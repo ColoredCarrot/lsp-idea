@@ -49,5 +49,4 @@ open class LspServerValidatorBase : LspServerValidator {
             else -> LspServerValidationResult.Failure(exception, sessionState.serverInfoOrNull)
         }
     }
-
 }

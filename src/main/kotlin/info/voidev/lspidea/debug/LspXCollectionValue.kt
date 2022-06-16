@@ -1,14 +1,14 @@
 package info.voidev.lspidea.debug
 
-//import com.intellij.xdebugger.frame.XCompositeNode
-//import com.intellij.xdebugger.frame.XValue
-//import com.intellij.xdebugger.frame.XValueChildrenList
-//import com.intellij.xdebugger.frame.XValueNode
-//import com.intellij.xdebugger.frame.XValuePlace
-//import com.intellij.xdebugger.frame.presentation.XValuePresentation
-//import info.voidev.lspidea.wrapperClass
+// import com.intellij.xdebugger.frame.XCompositeNode
+// import com.intellij.xdebugger.frame.XValue
+// import com.intellij.xdebugger.frame.XValueChildrenList
+// import com.intellij.xdebugger.frame.XValueNode
+// import com.intellij.xdebugger.frame.XValuePlace
+// import com.intellij.xdebugger.frame.presentation.XValuePresentation
+// import info.voidev.lspidea.wrapperClass
 //
-//class LspXCollectionValue(private val theCollection: Collection<*>) : XValue() {
+// class LspXCollectionValue(private val theCollection: Collection<*>) : XValue() {
 //
 //    // Simplistic approach not considering interfaces
 //    private val itemClass = theCollection.asSequence()
@@ -53,4 +53,4 @@ package info.voidev.lspidea.debug
 //            return result
 //        }
 //    }
-//}
+// }

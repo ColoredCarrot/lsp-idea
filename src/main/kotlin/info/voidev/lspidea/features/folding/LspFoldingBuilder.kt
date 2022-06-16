@@ -26,9 +26,11 @@ class LspFoldingBuilder : FoldingBuilderEx() {
 
         if (!LspFoldingFeature.isAvailable(session)) return emptyArray()
 
-        val ranges = session.server.textDocumentService.foldingRange(FoldingRangeRequestParams(
-            document.identifyForLsp()
-        )).joinLsp(session.project, "Could not fetch folding ranges")
+        val ranges = session.server.textDocumentService.foldingRange(
+            FoldingRangeRequestParams(
+                document.identifyForLsp()
+            )
+        ).joinLsp(session.project, "Could not fetch folding ranges")
             ?: return emptyArray()
 
         val getInRange = document.range2lspRange(root.textRange)
@@ -46,7 +48,7 @@ class LspFoldingBuilder : FoldingBuilderEx() {
                     document.lspPosition2offset(range.endLine, range.endCharacter ?: document.getLineEndOffset(range.endLine)),
                     null,
                     getPlaceholderText(range)
-                //TODO: if range.kind == Imports, then collapsedByDefault
+                    // TODO: if range.kind == Imports, then collapsedByDefault
                 )
             }
             .toList().toTypedArray()
@@ -68,5 +70,4 @@ class LspFoldingBuilder : FoldingBuilderEx() {
         throw AssertionError("Placeholder texts are supplied during construction")
 
     override fun isCollapsedByDefault(node: ASTNode) = false
-
 }

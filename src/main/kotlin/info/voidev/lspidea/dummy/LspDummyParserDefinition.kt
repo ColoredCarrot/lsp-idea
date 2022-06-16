@@ -30,5 +30,4 @@ class LspDummyParserDefinition : ParserDefinition {
     override fun createFile(viewProvider: FileViewProvider): PsiFile {
         return LspDummyPsiFile(viewProvider)
     }
-
 }

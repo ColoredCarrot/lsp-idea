@@ -43,22 +43,25 @@ class LspSemanticTokensView(private val project: Project) : ComponentContainer, 
         Disposer.register(this, messageBusConn)
 
         messageBusConn.subscribe(LspSemanticTokensListener.TOPIC, this)
-        messageBusConn.subscribe(ToolWindowManagerListener.TOPIC, object : ToolWindowManagerListener {
-            override fun stateChanged(toolWindowManager: ToolWindowManager) {
-                val myToolWindow = toolWindowManager.getToolWindow(LspSemanticTokensToolWindowFactory.ID)!!
-                if (myToolWindow.isVisible) {
-                    highlightInEditor()
-                } else {
-                    clearInEditorHighlights()
+        messageBusConn.subscribe(
+            ToolWindowManagerListener.TOPIC,
+            object : ToolWindowManagerListener {
+                override fun stateChanged(toolWindowManager: ToolWindowManager) {
+                    val myToolWindow = toolWindowManager.getToolWindow(LspSemanticTokensToolWindowFactory.ID)!!
+                    if (myToolWindow.isVisible) {
+                        highlightInEditor()
+                    } else {
+                        clearInEditorHighlights()
+                    }
                 }
-            }
 
-            override fun toolWindowShown(toolWindow: ToolWindow) {
-                if (toolWindow.id == LspSemanticTokensToolWindowFactory.ID) {
-                    highlightInEditor()
+                override fun toolWindowShown(toolWindow: ToolWindow) {
+                    if (toolWindow.id == LspSemanticTokensToolWindowFactory.ID) {
+                        highlightInEditor()
+                    }
                 }
             }
-        })
+        )
 
         listComp.addListSelectionListener { e ->
             if (!e.valueIsAdjusting) {

@@ -58,14 +58,12 @@ object LspIdeaCapabilities {
 
     val capabilities by lazy(LazyThreadSafetyMode.PUBLICATION) { createCapabilities() }
 
-
     fun createCapabilities() = ClientCapabilities().apply {
         general = createGeneral()
         textDocument = createTextDocument()
         window = createWindow()
         workspace = createWorkspace()
     }
-
 
     private fun createGeneral() = GeneralClientCapabilities().apply {
         markdown = createMarkdown()
@@ -75,7 +73,6 @@ object LspIdeaCapabilities {
         parser = "IntelliJ Markdown"
         version = "unknown"
     }
-
 
     private fun createTextDocument() = TextDocumentClientCapabilities().apply {
         synchronization = createSynchronization()
@@ -97,23 +94,25 @@ object LspIdeaCapabilities {
     }
 
     private fun createSynchronization() = SynchronizationCapabilities().apply {
-        willSave = false//TODO true
-        willSaveWaitUntil = false//TODO true
+        willSave = false // TODO true
+        willSaveWaitUntil = false // TODO true
         didSave = true
     }
 
     private fun createCompletion() = CompletionCapabilities().apply {
         completionItem = createCompletionItem()
-        contextSupport = false//TODO true
+        contextSupport = false // TODO true
     }
 
     private fun createCompletionItem() = CompletionItemCapabilities().apply {
-        tagSupport = CompletionItemTagSupportCapabilities(listOf(
-            CompletionItemTag.Deprecated,
-        ))
+        tagSupport = CompletionItemTagSupportCapabilities(
+            listOf(
+                CompletionItemTag.Deprecated,
+            )
+        )
         deprecatedSupport = true
         documentationFormat = listOf(MarkupKind.MARKDOWN, MarkupKind.PLAINTEXT)
-        commitCharactersSupport = false//TODO
+        commitCharactersSupport = false // TODO
         insertReplaceSupport = true
         snippetSupport = true
         // We can resolve all those attributes which are only needed at insertion
@@ -131,31 +130,33 @@ object LspIdeaCapabilities {
     }
 
     private fun createSemanticTokensRequest() = SemanticTokensClientCapabilitiesRequests().apply {
-        setRange(false)//TODO
+        setRange(false) // TODO
         setFull(SemanticTokensClientCapabilitiesRequestsFull(true))
     }
 
     private fun createDiagnostics() = PublishDiagnosticsCapabilities().apply {
         relatedInformation = true
         setTagSupport(DiagnosticsTagSupport(listOf(DiagnosticTag.Deprecated, DiagnosticTag.Unnecessary)))
-        codeDescriptionSupport = false//TODO
-        dataSupport = false//TODO
+        codeDescriptionSupport = false // TODO
+        dataSupport = false // TODO
 
-        //TODO: this seems a bit broken; e.g. rust-analyzer doesn't send new diagnostics for each version, so how to interpret?
+        // TODO: this seems a bit broken; e.g. rust-analyzer doesn't send new diagnostics for each version, so how to interpret?
         versionSupport = false
     }
 
     private fun createCodeAction() = CodeActionCapabilities().apply {
         codeActionLiteralSupport = CodeActionLiteralSupportCapabilities().apply {
-            codeActionKind = CodeActionKindCapabilities(listOf(
-                CodeActionKind.QuickFix,
-                CodeActionKind.SourceOrganizeImports,
-                CodeActionKind.Refactor, CodeActionKind.RefactorInline, CodeActionKind.RefactorExtract
-            ))
+            codeActionKind = CodeActionKindCapabilities(
+                listOf(
+                    CodeActionKind.QuickFix,
+                    CodeActionKind.SourceOrganizeImports,
+                    CodeActionKind.Refactor, CodeActionKind.RefactorInline, CodeActionKind.RefactorExtract
+                )
+            )
         }
-        isPreferredSupport = false//TODO
-        disabledSupport = true//TODO make sure this is handled as early as possible (not just in the executor)
-        resolveSupport = CodeActionResolveSupportCapabilities(listOf())//TODO
+        isPreferredSupport = false // TODO
+        disabledSupport = true // TODO make sure this is handled as early as possible (not just in the executor)
+        resolveSupport = CodeActionResolveSupportCapabilities(listOf()) // TODO
     }
 
     private fun createSignatureHelp() = SignatureHelpCapabilities().apply {
@@ -174,9 +175,11 @@ object LspIdeaCapabilities {
 
     private fun createFoldingRange() = FoldingRangeCapabilities().apply {
         lineFoldingOnly = false
-        foldingRangeKind = FoldingRangeKindSupportCapabilities(listOf(
-            FoldingRangeKind.Comment, FoldingRangeKind.Imports, FoldingRangeKind.Region
-        ))
+        foldingRangeKind = FoldingRangeKindSupportCapabilities(
+            listOf(
+                FoldingRangeKind.Comment, FoldingRangeKind.Imports, FoldingRangeKind.Region
+            )
+        )
         foldingRange = FoldingRangeSupportCapabilities().apply {
             collapsedText = true
         }
@@ -201,7 +204,6 @@ object LspIdeaCapabilities {
         linkSupport = true
     }
 
-
     private fun createWindow() = WindowClientCapabilities().apply {
         showMessage = createShowMessage()
         showDocument = ShowDocumentCapabilities(true)
@@ -211,7 +213,6 @@ object LspIdeaCapabilities {
     private fun createShowMessage() = WindowShowMessageRequestCapabilities().apply {
         messageActionItem = WindowShowMessageRequestActionItemCapabilities(false)
     }
-
 
     private fun createWorkspace() = WorkspaceClientCapabilities().apply {
         applyEdit = true
@@ -229,7 +230,6 @@ object LspIdeaCapabilities {
             ResourceOperationKind.Rename,
         )
         normalizesLineEndings = true
-        //TODO failureHandling
+        // TODO failureHandling
     }
-
 }

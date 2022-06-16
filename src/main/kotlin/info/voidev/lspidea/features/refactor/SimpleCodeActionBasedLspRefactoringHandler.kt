@@ -23,5 +23,4 @@ open class SimpleCodeActionBasedLspRefactoringHandler(
 
         return true
     }
-
 }

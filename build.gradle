@@ -45,3 +45,10 @@ patchPluginXml {
 test {
     useJUnit()
 }
+
+ktlint {
+    outputToConsole = true
+    filter {
+        exclude('**/test/kotlin/**')
+    }
+}

@@ -47,11 +47,15 @@ object DebugNodeFactory {
 
     private object NullDebugNode : XValue() {
         override fun computePresentation(node: XValueNode, place: XValuePlace) {
-            node.setPresentation(null, object : XValuePresentation() {
-                override fun renderValue(renderer: XValueTextRenderer) {
-                    renderer.renderKeywordValue("null")
-                }
-            }, false)
+            node.setPresentation(
+                null,
+                object : XValuePresentation() {
+                    override fun renderValue(renderer: XValueTextRenderer) {
+                        renderer.renderKeywordValue("null")
+                    }
+                },
+                false
+            )
         }
     }
 }

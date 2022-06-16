@@ -12,5 +12,4 @@ open class InlayHintLabelPart {
     var location: LocationLink? = null
 
     var command: Command? = null
-
 }

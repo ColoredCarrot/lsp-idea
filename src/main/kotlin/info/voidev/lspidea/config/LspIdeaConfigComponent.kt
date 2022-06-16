@@ -30,5 +30,4 @@ class LspIdeaConfigComponent {
         set(value) {
             maxSelectionRangesBox.text = value.toString()
         }
-
 }

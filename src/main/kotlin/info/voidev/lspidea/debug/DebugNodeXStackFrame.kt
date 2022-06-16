@@ -12,5 +12,4 @@ class DebugNodeXStackFrame(private val root: XValue) : XStackFrame() {
         children.add("<root>", root)
         node.addChildren(children, true)
     }
-
 }

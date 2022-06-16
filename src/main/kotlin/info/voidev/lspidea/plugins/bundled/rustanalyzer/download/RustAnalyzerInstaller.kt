@@ -76,14 +76,16 @@ class RustAnalyzerInstaller : LspServerExecutableInstaller {
             .run(object : Task.WithResult<CharSequence?, Exception>(null, "Fetching", true) {
                 override fun compute(indicator: ProgressIndicator): CharSequence? {
                     return try {
-                        AppExecutorUtil.getAppExecutorService().submit(Callable {
-                            HttpRequests
-                                .request(GitHubApiEndpoints.releases("rust-lang", "rust-analyzer", 5))
-                                .accept("application/json")
-                                .productNameAsUserAgent()
-                                .readTimeout(5000)
-                                .readChars()
-                        }).joinUnwrapExceptionsCancellable(indicator = indicator)
+                        AppExecutorUtil.getAppExecutorService().submit(
+                            Callable {
+                                HttpRequests
+                                    .request(GitHubApiEndpoints.releases("rust-lang", "rust-analyzer", 5))
+                                    .accept("application/json")
+                                    .productNameAsUserAgent()
+                                    .readTimeout(5000)
+                                    .readChars()
+                            }
+                        ).joinUnwrapExceptionsCancellable(indicator = indicator)
                     } catch (ex: ProcessCanceledException) {
                         throw ex
                     } catch (ex: Exception) {
@@ -100,12 +102,14 @@ class RustAnalyzerInstaller : LspServerExecutableInstaller {
 
         val future = CompletableFuture<Path>()
 
-        actionGroup.addAll(releasesDto.mapNotNull { releaseDto ->
-            val theAsset = releaseDto.assets.firstOrNull { it.name == WINDOWS_RELEASE_TAG_NAME }
+        actionGroup.addAll(
+            releasesDto.mapNotNull { releaseDto ->
+                val theAsset = releaseDto.assets.firstOrNull { it.name == WINDOWS_RELEASE_TAG_NAME }
 
-            if (theAsset == null) null
-            else DownloadExecutableAction(releaseDto.tagName, theAsset.url, uiContext, future)
-        })
+                if (theAsset == null) null
+                else DownloadExecutableAction(releaseDto.tagName, theAsset.url, uiContext, future)
+            }
+        )
 
         val popup = JBPopupFactory.getInstance().createActionGroupPopup(
             null,
@@ -216,5 +220,4 @@ class RustAnalyzerInstaller : LspServerExecutableInstaller {
             }
         }
     }
-
 }

@@ -16,7 +16,6 @@ sealed class LspSnippetComponent {
     class Variable(
         val identifier: LspSnippetKnownVariable,
         val default: String?,
-        //TODO: val transform
+        // TODO: val transform
     )
-
 }

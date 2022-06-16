@@ -48,10 +48,12 @@ class LspHighlightUsagesHandlerFactory : HighlightUsagesHandlerFactory {
                 }
 
                 val highlights: List<DocumentHighlight> =
-                    session.server.textDocumentService.documentHighlight(DocumentHighlightParams(
-                        vfile.identifyForLsp(),
-                        editor.caretLspPosition
-                    )).joinLsp(session.project, "Could not fetch document highlights")
+                    session.server.textDocumentService.documentHighlight(
+                        DocumentHighlightParams(
+                            vfile.identifyForLsp(),
+                            editor.caretLspPosition
+                        )
+                    ).joinLsp(session.project, "Could not fetch document highlights")
                         ?: return
 
                 for (highlight in highlights) {
@@ -75,5 +77,4 @@ class LspHighlightUsagesHandlerFactory : HighlightUsagesHandlerFactory {
             }
         }
     }
-
 }

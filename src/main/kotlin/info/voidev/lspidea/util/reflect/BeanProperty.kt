@@ -10,5 +10,4 @@ interface BeanProperty : AnnotatedElement {
     val type: Type
 
     fun get(instance: Any): Any?
-
 }

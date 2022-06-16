@@ -8,8 +8,7 @@ import javax.swing.Icon
  */
 interface LspCodeLensSupport {
 
-    //TODO move the logic that gets the Icon for the code lens here
+    // TODO move the logic that gets the Icon for the code lens here
 
     fun parseCodeLens(codeLens: CodeLens): Icon?
-
 }

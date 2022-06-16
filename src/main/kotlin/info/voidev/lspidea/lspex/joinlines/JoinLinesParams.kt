@@ -13,5 +13,4 @@ open class JoinLinesParams constructor() {
         this.textDocument = textDocument
         this.ranges = ranges
     }
-
 }

@@ -33,5 +33,4 @@ class LspStructureViewHierarchicalElement(
     override fun getValue() = symbol
 
     override fun getAlphaSortKey(): String = symbol.name
-
 }

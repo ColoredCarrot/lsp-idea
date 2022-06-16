@@ -12,5 +12,4 @@ class RegexConverter : Converter<Regex?>() {
         }
         return Regex(value.trim(), RegexOption.IGNORE_CASE)
     }
-
 }

@@ -25,5 +25,4 @@ class RustAnalyzerConfiguredLspServer(
     override fun hashCode(): Int {
         return config.hashCode()
     }
-
 }

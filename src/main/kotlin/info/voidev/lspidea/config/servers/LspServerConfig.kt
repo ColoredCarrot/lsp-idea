@@ -35,19 +35,21 @@ class LspServerConfig(val origin: LspServerSupport<*>) : Config<LspServerConfigS
         nameField.emptyText.text = origin.server.displayName
 
         @Suppress("UnstableApiUsage")
-        mainComponent.add(panel {
-            row {
-                label("Name:")
-                cell(nameField).horizontalAlign(HorizontalAlign.FILL)
+        mainComponent.add(
+            panel {
+                row {
+                    label("Name:")
+                    cell(nameField).horizontalAlign(HorizontalAlign.FILL)
+                }
             }
-        })
+        )
         mainComponent.add(runnerConfig.component)
         mainComponent.add(optionsConfig.component)
     }
 
     override fun getComponent(): JComponent {
         return mainComponent
-        //TODO support plugin-specific settings here, below the runner settings
+        // TODO support plugin-specific settings here, below the runner settings
     }
 
     override fun getPreferredFocusableComponent(): JComponent? {
@@ -78,5 +80,4 @@ class LspServerConfig(val origin: LspServerSupport<*>) : Config<LspServerConfigS
 
     override fun dispose() {
     }
-
 }

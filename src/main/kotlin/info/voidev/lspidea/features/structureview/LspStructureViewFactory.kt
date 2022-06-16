@@ -81,9 +81,12 @@ class LspStructureViewFactory : PsiStructureViewFactory {
             return LspStructureViewFlatElement(LspSymbol(session, singleSymbol))
         }
 
-        return LspStructureViewFileElement(session, file, symbols.mapToArray { symbol ->
-            LspStructureViewFlatElement(LspSymbol(session, symbol))
-        })
+        return LspStructureViewFileElement(
+            session, file,
+            symbols.mapToArray { symbol ->
+                LspStructureViewFlatElement(LspSymbol(session, symbol))
+            }
+        )
     }
 
     private fun createRootHierarchical(
@@ -95,8 +98,11 @@ class LspStructureViewFactory : PsiStructureViewFactory {
             return LspStructureViewHierarchicalElement(session, file, singleSymbol)
         }
 
-        return LspStructureViewFileElement(session, file, symbols.mapToArray { symbol ->
-            LspStructureViewHierarchicalElement(session, file, symbol)
-        })
+        return LspStructureViewFileElement(
+            session, file,
+            symbols.mapToArray { symbol ->
+                LspStructureViewHierarchicalElement(session, file, symbol)
+            }
+        )
     }
 }

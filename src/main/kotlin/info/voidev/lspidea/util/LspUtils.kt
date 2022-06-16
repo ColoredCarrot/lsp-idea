@@ -118,7 +118,6 @@ fun Document.lspRange2range(range: Range) = TextRange(
     lspPosition2offset(range.end)
 )
 
-
 /**
  * Same as [Document.getLineEndOffset] but with invalid lines wrapped to be always valid.
  */
@@ -138,7 +137,6 @@ operator fun Range.contains(inner: Range) =
     Ranges.containsRange(this, inner)
 
 val Editor.caretLspPosition get() = document.offset2lspPosition(caretModel.offset)
-
 
 val CompletionItemKind?.icon
     get(): Icon? = when (this) {
@@ -203,7 +201,6 @@ val SymbolKind?.icon
         null -> null
     }
 
-
 fun <R> CompletableFuture<R>.joinLsp(project: Project, responseErrorTitle: String? = null): R? {
     @Suppress("UNCHECKED_CAST")
     return (this as CompletableFuture<R?>).joinUnwrapExceptionsCancellable(ifResponseError = {
@@ -259,7 +256,6 @@ private const val CANCELLED_REFRESH_INTERVAL_MILLIS = 100L
 
 private const val ABSOLUTE_TIMEOUT_MILLIS = 60 * 1000L // 1 min
 
-
 inline fun <T> ProgressManager.runBackgroundable(
     @Nls(capitalization = Nls.Capitalization.Sentence) title: String,
     project: Project?,
@@ -279,13 +275,10 @@ inline fun <T> ProgressManager.runBackgroundable(
     return future
 }
 
-
 inline operator fun <T, R> ((T) -> R).plus(crossinline next: (T) -> R): (T) -> R = { this(it); next(it) }
-
 
 fun ServerCapabilities.supportsRangeFormatting() =
     documentRangeFormattingProvider?.let { it.isRight || it.left } == true
-
 
 fun DiagnosticSeverity?.asHighlightSeverity(): HighlightSeverity = when (this) {
     DiagnosticSeverity.Error -> HighlightSeverity.ERROR
@@ -294,30 +287,25 @@ fun DiagnosticSeverity?.asHighlightSeverity(): HighlightSeverity = when (this) {
     DiagnosticSeverity.Information, null -> HighlightSeverity.INFORMATION
 }
 
-
 fun Document.append(s: CharSequence) {
     insertString(textLength, s)
 }
 
-
-//operator fun JTextComponent.getValue(thisRef: Any?, property: KProperty<*>): String {
+// operator fun JTextComponent.getValue(thisRef: Any?, property: KProperty<*>): String {
 //    return text
-//}
+// }
 //
-//operator fun JTextComponent.setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+// operator fun JTextComponent.setValue(thisRef: Any?, property: KProperty<*>, value: String) {
 //    text = value
-//}
-
+// }
 
 inline fun <T, reified R> List<T>.mapToArray(f: (T) -> R) = Array(size) { i -> f(this[i]) }
-
 
 fun InsertReplaceEdit.getEdit(isReplace: Boolean) = TextEdit(if (isReplace) replace else insert, newText)
 
 fun Either<TextEdit, InsertReplaceEdit>.getEdit(isReplace: Boolean) = left ?: right.getEdit(isReplace)
 
 val SelectionModel.selectionRange get() = TextRange(selectionStart, selectionEnd)
-
 
 @Suppress("NOTHING_TO_INLINE")
 inline operator fun <K> Object2IntMap<K>.set(key: K, value: Int) = put(key, value)

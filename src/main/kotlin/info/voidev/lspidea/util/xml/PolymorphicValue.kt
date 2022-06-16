@@ -69,5 +69,4 @@ class PolymorphicValue<T : Any>(
     override fun hashCode(): Int {
         return get().hashCode()
     }
-
 }

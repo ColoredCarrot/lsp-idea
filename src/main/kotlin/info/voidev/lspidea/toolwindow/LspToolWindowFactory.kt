@@ -12,11 +12,13 @@ class LspToolWindowFactory : ToolWindowFactory, DumbAware {
     override fun isApplicable(project: Project) = true
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        toolWindow.contentManager.addContent(toolWindow.contentManager.factory.createContent(
-            createOverview(),
-            "Overview",
-            false
-        ))
+        toolWindow.contentManager.addContent(
+            toolWindow.contentManager.factory.createContent(
+                createOverview(),
+                "Overview",
+                false
+            )
+        )
 
         // More contents will be added dynamically (whenever a session is created)
     }
@@ -24,9 +26,6 @@ class LspToolWindowFactory : ToolWindowFactory, DumbAware {
     private fun createOverview(): JComponent {
         val panel = JBPanelWithEmptyText()
 
-
-
         return panel
     }
-
 }

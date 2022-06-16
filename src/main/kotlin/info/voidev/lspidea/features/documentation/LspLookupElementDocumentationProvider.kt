@@ -37,8 +37,8 @@ class LspLookupElementDocumentationProvider : AbstractLspDocumentationProvider()
         contextElement: PsiElement?,
         targetOffset: Int,
     ): PsiElement? {
-        //TODO: Check if we actually "want to be used" in this file
-        //TODO prolly send hover request to language server (?)
+        // TODO: Check if we actually "want to be used" in this file
+        // TODO prolly send hover request to language server (?)
         return null
     }
 }

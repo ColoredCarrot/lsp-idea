@@ -40,5 +40,4 @@ class LspHighlightingAnnotator : ExternalAnnotator<LspHighlightingContext, List<
             }
         }
     }
-
 }

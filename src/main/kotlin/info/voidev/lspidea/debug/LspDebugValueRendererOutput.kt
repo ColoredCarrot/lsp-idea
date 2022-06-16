@@ -15,5 +15,4 @@ interface LspDebugValueRendererOutput {
     fun appendComment(comment: String)
 
     fun appendError(error: String)
-
 }

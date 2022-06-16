@@ -16,5 +16,4 @@ open class InlayHint {
     var paddingLeft: Boolean? = null
 
     var paddingRight: Boolean? = null
-
 }

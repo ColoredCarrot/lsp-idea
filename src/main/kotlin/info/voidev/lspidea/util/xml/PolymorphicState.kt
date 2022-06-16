@@ -59,5 +59,4 @@ abstract class PolymorphicState<T : Any> {
     override fun hashCode(): Int {
         return Objects.hash(discriminator, get())
     }
-
 }

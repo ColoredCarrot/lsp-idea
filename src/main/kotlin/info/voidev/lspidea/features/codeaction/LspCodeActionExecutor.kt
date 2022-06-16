@@ -22,5 +22,4 @@ object LspCodeActionExecutor {
             LspCommandExecutionUtil.execute(command, session)
         }
     }
-
 }

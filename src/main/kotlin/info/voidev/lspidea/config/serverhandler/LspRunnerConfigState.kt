@@ -72,7 +72,6 @@ class LspRunnerConfigState internal constructor() {
         result = 31 * result + getConfig().hashCode()
         return result
     }
-
 }
 
 class LspServerHandlerTypeConverter : Converter<LspRunnerType<*>>() {

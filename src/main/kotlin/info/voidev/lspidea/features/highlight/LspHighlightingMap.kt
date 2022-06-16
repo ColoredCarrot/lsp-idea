@@ -1,6 +1,31 @@
 package info.voidev.lspidea.features.highlight
 
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.*
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.BRACES
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.BRACKETS
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.CLASS_NAME
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.CLASS_REFERENCE
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.COMMA
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.CONSTANT
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.DOC_COMMENT
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.DOT
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.FUNCTION_CALL
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.FUNCTION_DECLARATION
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.INSTANCE_FIELD
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.INSTANCE_METHOD
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.KEYWORD
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.LABEL
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.LINE_COMMENT
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.LOCAL_VARIABLE
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.NUMBER
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.OPERATION_SIGN
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.PARAMETER
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.PARENTHESES
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.REASSIGNED_LOCAL_VARIABLE
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.SEMICOLON
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.STATIC_FIELD
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.STATIC_METHOD
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.STRING
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.VALID_STRING_ESCAPE
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import org.eclipse.lsp4j.SemanticTokenModifiers as Mods
 import org.eclipse.lsp4j.SemanticTokenTypes as Toks
@@ -58,7 +83,7 @@ object LspHighlightingMap {
             Toks.Keyword -> KEYWORD
             Toks.String -> STRING
             Toks.Number -> NUMBER
-            Toks.Regexp -> STRING//TODO
+            Toks.Regexp -> STRING // TODO
             Toks.Operator -> OPERATION_SIGN
             Toks.Namespace -> null
             Toks.Type,
@@ -76,7 +101,7 @@ object LspHighlightingMap {
                 if (Mods.Readonly in mods) if (static) CONSTANT else LOCAL_VARIABLE
                 else if (static) STATIC_FIELD else REASSIGNED_LOCAL_VARIABLE
             Toks.Parameter -> PARAMETER
-            Toks.TypeParameter -> PARAMETER//TODO might delegate to JavaHighlightingColors' type parameter
+            Toks.TypeParameter -> PARAMETER // TODO might delegate to JavaHighlightingColors' type parameter
             Toks.Event -> null
 
             // Non-standard
@@ -96,7 +121,7 @@ object LspHighlightingMap {
             "punctuation" -> null
             "logical" -> null
             "semicolon" -> SEMICOLON
-            "typeAlias" -> CLASS_NAME //TODO might delegate to org.jetbrains.kotlin.idea.highlighter.KotlinHighlightingColors#TYPE_ALIAS
+            "typeAlias" -> CLASS_NAME // TODO might delegate to org.jetbrains.kotlin.idea.highlighter.KotlinHighlightingColors#TYPE_ALIAS
 
             // rust-analyzer
             "boolean" -> KEYWORD

@@ -50,7 +50,7 @@ object LspSessionDestructor {
             return
         }
 
-        //TODO: Find a good way to deal with concurrent session destruction.
+        // TODO: Find a good way to deal with concurrent session destruction.
         // Prolly best to have a ReadWriteLock for status (constructor/destructor write and methods that fire requests/notifications read)
 //        if (state.status == LspStatus.STOPPING || state.status == LspStatus.FINALIZING) {
 //            throw IllegalStateException("Attempting to destroy LSP session whose status is ${state.status}")
@@ -79,8 +79,10 @@ object LspSessionDestructor {
             if (!exitDidTimeOut) {
                 state.status = LspStatus.STOPPED
                 if (exitCodeOrNull != 0) {
-                    LspIdea.showWarning("Language server exited with non-zero exit code $exitCodeOrNull",
-                        state.project)
+                    LspIdea.showWarning(
+                        "Language server exited with non-zero exit code $exitCodeOrNull",
+                        state.project
+                    )
                 }
             }
         }

@@ -21,10 +21,12 @@ object LspSelectionRangesProvider {
 
         if (!mayFetchSelectionRanges(session.state.serverCapabilities)) return null
 
-        var range = session.server.textDocumentService.selectionRange(SelectionRangeParams(
-            document.identifyForLsp(),
-            listOf(document.offset2lspPosition(offset))
-        )).joinUnwrapExceptionsCancellable()
+        var range = session.server.textDocumentService.selectionRange(
+            SelectionRangeParams(
+                document.identifyForLsp(),
+                listOf(document.offset2lspPosition(offset))
+            )
+        ).joinUnwrapExceptionsCancellable()
             ?.getOrNull(0)
 
         val result = ArrayList<TextRange>()
@@ -39,11 +41,9 @@ object LspSelectionRangesProvider {
         }
 
         return result
-
     }
 
     private fun mayFetchSelectionRanges(caps: ServerCapabilities): Boolean {
         return caps.selectionRangeProvider?.let { it.left ?: it.isRight } == true
     }
-
 }

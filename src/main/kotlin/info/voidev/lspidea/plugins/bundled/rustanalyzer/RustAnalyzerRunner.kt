@@ -72,12 +72,15 @@ class RustAnalyzerRunner(private val session: LspSession) {
     private fun createRustCompilerFileLinksFilter(runnable: CargoRunnable) = PatternBasedFileHyperlinkFilter(
         session.project,
         runnable.workspaceRoot ?: session.project.guessProjectDir()?.canonicalPath,
-        PatternBasedFileHyperlinkRawDataFinder(arrayOf(PatternHyperlinkFormat(
-            Pattern.compile("--> (.+\\.rs):(\\d+):(\\d+)", Pattern.CASE_INSENSITIVE),
-            false,
-            false,
-            PatternHyperlinkPart.PATH, PatternHyperlinkPart.LINE, PatternHyperlinkPart.COLUMN
-        )))
+        PatternBasedFileHyperlinkRawDataFinder(
+            arrayOf(
+                PatternHyperlinkFormat(
+                    Pattern.compile("--> (.+\\.rs):(\\d+):(\\d+)", Pattern.CASE_INSENSITIVE),
+                    false,
+                    false,
+                    PatternHyperlinkPart.PATH, PatternHyperlinkPart.LINE, PatternHyperlinkPart.COLUMN
+                )
+            )
+        )
     )
-
 }

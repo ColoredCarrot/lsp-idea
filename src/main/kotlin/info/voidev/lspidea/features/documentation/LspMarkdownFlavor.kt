@@ -13,7 +13,7 @@ import java.net.URI
 object LspMarkdownFlavor : GFMFlavourDescriptor() {
     override fun createHtmlGeneratingProviders(linkMap: LinkMap, baseURI: URI?): Map<IElementType, GeneratingProvider> {
         val providers = super.createHtmlGeneratingProviders(linkMap, baseURI)
-        //TODO: Inject our own provider to transform links
+        // TODO: Inject our own provider to transform links
         return providers
     }
 }

@@ -13,7 +13,6 @@ interface LspCommandExecutor {
      * otherwise, returns `false`.
      */
     fun execute(command: Command, session: LspSession): Boolean
-
 }
 
 object LspCommandExecutorEP {
@@ -24,5 +23,4 @@ object LspCommandExecutorEP {
     fun execute(command: Command, session: LspSession): Boolean {
         return EP_NAME.extensionList.any { it.execute(command, session) }
     }
-
 }

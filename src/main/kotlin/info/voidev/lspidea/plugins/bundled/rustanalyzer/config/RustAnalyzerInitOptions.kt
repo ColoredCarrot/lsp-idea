@@ -64,5 +64,4 @@ data class RustAnalyzerInitOptions(
         @Tag
         var methodReferences: Boolean? = null,
     )
-
 }

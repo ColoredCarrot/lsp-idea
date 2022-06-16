@@ -19,11 +19,10 @@ class LspInlineActionHandler : InlineActionHandler() {
 
     override fun canInlineElement(element: PsiElement?) =
         element is LspDummyPsiElement ||
-                element is LspDummyPsiFile ||
-                element.elementType?.let { it == LspElementTypes.Content || it == LspElementTypes.File } == true
+            element is LspDummyPsiFile ||
+            element.elementType?.let { it == LspElementTypes.Content || it == LspElementTypes.File } == true
 
     override fun inlineElement(project: Project, editor: Editor?, element: PsiElement?) {
         LspInlineHandler.invoke(project, editor, element?.containingFile, null)
     }
-
 }

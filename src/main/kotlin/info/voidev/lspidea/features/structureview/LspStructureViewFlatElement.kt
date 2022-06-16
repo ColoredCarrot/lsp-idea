@@ -17,5 +17,4 @@ class LspStructureViewFlatElement(
     override fun getValue() = symbol
 
     override fun getAlphaSortKey() = symbol.name
-
 }

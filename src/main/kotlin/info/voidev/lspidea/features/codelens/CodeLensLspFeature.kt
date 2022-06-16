@@ -10,5 +10,4 @@ object CodeLensLspFeature : LspFeature {
     override fun isAvailable(session: LspSession): Boolean {
         return session.state.serverCapabilitiesOrNull?.codeLensProvider != null
     }
-
 }

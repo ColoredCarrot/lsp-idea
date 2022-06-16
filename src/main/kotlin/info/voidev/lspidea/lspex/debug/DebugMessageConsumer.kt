@@ -43,5 +43,4 @@ class DebugMessageConsumer(
     private fun shouldCaptureMessage(message: Message) =
         // Always capture error messages
         debugger.captureContents || message is ResponseMessage && message.error != null
-
 }

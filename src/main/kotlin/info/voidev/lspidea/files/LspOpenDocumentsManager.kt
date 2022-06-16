@@ -23,7 +23,7 @@ import org.eclipse.lsp4j.VersionedTextDocumentIdentifier
  * Manages currently open text documents,
  * where open means that we sent an open notification to the server.
  */
-//TODO support TextDocumentSyndKinds other than incremental
+// TODO support TextDocumentSyndKinds other than incremental
 class LspOpenDocumentsManager(val session: LspSession) : Disposable {
 
     private val openDocuments = hashMapOf<String, LspOpenDocument>()

@@ -17,5 +17,4 @@ class JrpcMessageDetailsView : ComponentContainer {
 
     override fun dispose() {
     }
-
 }

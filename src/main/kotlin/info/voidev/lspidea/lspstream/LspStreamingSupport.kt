@@ -3,7 +3,6 @@ package info.voidev.lspidea.lspstream
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.util.Disposer
 import info.voidev.lspidea.connect.LspSession
-import info.voidev.lspidea.connect.LspStatus
 import org.eclipse.lsp4j.ProgressParams
 import java.util.concurrent.ConcurrentHashMap
 

@@ -46,5 +46,4 @@ open class ResolvedSnippetTextEdit(
             super.applyTo(document, delegateMoveCaretInEditor)
         }
     }
-
 }

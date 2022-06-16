@@ -11,7 +11,6 @@ import com.intellij.refactoring.ui.RefactoringDialog
 import com.intellij.util.ui.JBUI
 import com.intellij.xml.util.XmlStringUtil
 import info.voidev.lspidea.connect.LspSession
-import info.voidev.lspidea.connect.LspStatus
 import info.voidev.lspidea.editor.applyWorkspaceEdit
 import info.voidev.lspidea.util.offset2lspPosition
 import org.eclipse.lsp4j.RenameParams
@@ -90,11 +89,13 @@ class LspRenameDialog(
 
         isOKActionEnabled = false
 
-        session.server.textDocumentService.rename(RenameParams(
-            fileIdentifier,
-            editor.document.offset2lspPosition(editor.caretModel.currentCaret.offset),
-            newName
-        )).handle { workspaceEdit: WorkspaceEdit?, ex: Throwable? ->
+        session.server.textDocumentService.rename(
+            RenameParams(
+                fileIdentifier,
+                editor.document.offset2lspPosition(editor.caretModel.currentCaret.offset),
+                newName
+            )
+        ).handle { workspaceEdit: WorkspaceEdit?, ex: Throwable? ->
             if (ex != null) {
                 if (ex is ResponseErrorException) {
 //                    setErrorText(ex.responseError.message, myNameSuggestionsField)

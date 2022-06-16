@@ -73,5 +73,4 @@ class JsonTreeView(private val value: JsonElement) : XStackFrame() {
             }
         }
     }
-
 }

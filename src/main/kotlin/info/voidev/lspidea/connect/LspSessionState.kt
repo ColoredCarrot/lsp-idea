@@ -31,9 +31,8 @@ class LspSessionState internal constructor(
 
     lateinit var debugger: JrpcDebugger
 
-    //TODO remove
+    // TODO remove
     val ioLog = WriterWrapper()
-
 
     val server: LanguageServerEx
         get() = serverOrNull!!
@@ -43,5 +42,4 @@ class LspSessionState internal constructor(
 
     val serverCapabilities: ServerCapabilities
         get() = serverCapabilitiesOrNull!!
-
 }

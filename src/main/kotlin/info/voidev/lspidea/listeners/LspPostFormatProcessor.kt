@@ -68,7 +68,7 @@ class LspPostFormatProcessor : PostFormatProcessor {
             if (entireFile) TextRange(0, document.textLength)
             else rangeMarker?.range ?: TextRange.EMPTY_RANGE
 
-        if (rangeMarker != null){
+        if (rangeMarker != null) {
             if (rangeMarker is Disposable) Disposer.dispose(rangeMarker)
             else rangeMarker.dispose()
         }

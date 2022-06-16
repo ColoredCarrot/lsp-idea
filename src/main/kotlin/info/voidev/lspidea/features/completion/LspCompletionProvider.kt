@@ -48,9 +48,9 @@ class LspCompletionProvider(private val editor: Editor, private val session: Lsp
                 }
 
                 val completionItems = if (response.isLeft) response.left else response.right.items
-                val isIncomplete = response.isRight && response.right.isIncomplete //TODO
+                val isIncomplete = response.isRight && response.right.isIncomplete // TODO
 
-                //TODO test sorting
+                // TODO test sorting
                 completionItems.asSequence()
                     .sortedByDescending { item -> item.sortText?.takeIf { it.isNotBlank() } ?: item.label!! }
                     .mapNotNull(::createLookupElement)
@@ -105,7 +105,7 @@ class LspCompletionProvider(private val editor: Editor, private val session: Lsp
             if (!item.additionalTextEdits.isNullOrEmpty()) {
                 thisLogger().info(
                     "CompletionItem.additionalTextEdits is set and non-empty even though textEdit is not set. " +
-                            "This is not yet supported. Dropping additional edits."
+                        "This is not yet supported. Dropping additional edits."
                 )
             }
             return
@@ -121,7 +121,7 @@ class LspCompletionProvider(private val editor: Editor, private val session: Lsp
 
         // Clear IntelliJ's insertion
 //        if (!isReplace) {
-            document.deleteString(context.startOffset, context.tailOffset)
+        document.deleteString(context.startOffset, context.tailOffset)
 //        }
 
         val mainEdit = item.textEdit.getEdit(isReplace)
@@ -143,5 +143,4 @@ class LspCompletionProvider(private val editor: Editor, private val session: Lsp
         // Finally, there might be a command to execute
         item.command?.also { LspCommandExecutionUtil.execute(it, session) }
     }
-
 }

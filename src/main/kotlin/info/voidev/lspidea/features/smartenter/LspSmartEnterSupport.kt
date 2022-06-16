@@ -12,5 +12,4 @@ interface LspSmartEnterSupport {
      * @return `true` iff smart enter was performed.
      */
     fun performSmartEnter(session: LspSession, file: VirtualFile, editor: Editor): Boolean
-
 }

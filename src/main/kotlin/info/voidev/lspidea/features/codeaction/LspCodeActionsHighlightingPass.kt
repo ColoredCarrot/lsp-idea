@@ -35,7 +35,7 @@ class LspCodeActionsHighlightingPass(project: Project, private val editor: Edito
         try {
             return doCollectInformation0(progress)
         } catch (ex: ResponseErrorException) {
-            //TODO figure out a cool way to handle this
+            // TODO figure out a cool way to handle this
             LspIdea.showResponseError("Could not fetch code actions", ex.responseError, myProject)
         }
     }
@@ -56,11 +56,13 @@ class LspCodeActionsHighlightingPass(project: Project, private val editor: Edito
         val range = TextRange(editor.selectionModel.selectionStart, editor.selectionModel.selectionEnd)
         val rangeForLsp = document.range2lspRange(range)
 
-        val actions: List<CodeAction> = session.server.textDocumentService.codeAction(CodeActionParams(
-            document.identifyForLsp(),
-            rangeForLsp,
-            CodeActionContext(emptyList())
-        )).joinUnwrapExceptionsCancellable()
+        val actions: List<CodeAction> = session.server.textDocumentService.codeAction(
+            CodeActionParams(
+                document.identifyForLsp(),
+                rangeForLsp,
+                CodeActionContext(emptyList())
+            )
+        ).joinUnwrapExceptionsCancellable()
             .orEmpty()
             .map { it.right ?: it.left.toCodeAction() }
 

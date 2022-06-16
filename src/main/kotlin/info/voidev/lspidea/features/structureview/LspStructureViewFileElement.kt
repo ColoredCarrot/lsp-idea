@@ -26,5 +26,4 @@ class LspStructureViewFileElement(
     override fun getChildren() = children
 
     override fun getValue() = file
-
 }

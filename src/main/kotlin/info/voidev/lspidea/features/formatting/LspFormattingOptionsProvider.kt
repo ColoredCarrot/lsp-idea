@@ -20,12 +20,11 @@ object LspFormattingOptionsProvider {
     }
 
     private fun make(settings: CodeStyleSettings) = FormattingOptions().apply {
-        //TODO
+        // TODO
         tabSize = settings.getTabSize(LspFileType)
         isInsertSpaces = true
         isInsertFinalNewline = true
         isTrimFinalNewlines = true
         isTrimTrailingWhitespace = true
     }
-
 }

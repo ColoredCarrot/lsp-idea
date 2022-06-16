@@ -11,5 +11,4 @@ class UNUSEDLspJoinLinesActionHandler : EditorActionHandler() {
     override fun doExecute(editor: Editor, caret: Caret?, dataContext: DataContext?) {
         super.doExecute(editor, caret, dataContext)
     }
-
 }

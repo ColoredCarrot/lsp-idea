@@ -28,5 +28,4 @@ class GenericConfiguredLspServer(
     override fun hashCode(): Int {
         return config.hashCode()
     }
-
 }

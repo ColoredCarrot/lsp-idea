@@ -45,10 +45,12 @@ class LspDocumentationProvider : AbstractLspDocumentationProvider() {
 
         val session = LspSessionManager.getInstance(project).getForFile(vfile) ?: return null
 
-        val info = session.server.textDocumentService.hover(HoverParams(
-            vfile.identifyForLsp(),
-            targetPosition
-        )).joinLsp(project, "Could not fetch documentation")
+        val info = session.server.textDocumentService.hover(
+            HoverParams(
+                vfile.identifyForLsp(),
+                targetPosition
+            )
+        ).joinLsp(project, "Could not fetch documentation")
             ?: return null
 
         return LspFakePsiElementForDocumentation(session, vfile, targetOffset, targetPosition, info, file.manager)

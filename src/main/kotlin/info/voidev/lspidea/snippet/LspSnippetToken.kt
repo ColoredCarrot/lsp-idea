@@ -18,5 +18,4 @@ sealed class LspSnippetToken {
     object Pipe : LspSnippetToken()
     object Colon : LspSnippetToken()
     object Comma : LspSnippetToken()
-
 }

@@ -12,7 +12,6 @@ sealed interface ConfiguredLspServer : LspServer {
      * automatically for a given [file].
      */
     fun shouldActivateForFile(file: VirtualFile): Boolean
-
 }
 
 abstract class AbstractConfiguredLspServer(private val server: LspServer) : ConfiguredLspServer, LspServer by server

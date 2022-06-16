@@ -116,7 +116,6 @@ class JrpcMessageDetailsViewFactory(private val project: Project, private val gs
                         resolved.message != null -> sentence.append(" successfully")
                     }
                 }
-
             } else if (m.kind == JrpcMessageKind.RESPONSE) {
                 if ((m.message as ResponseMessage?)?.error != null) {
                     sentence.append(" contains an error")
@@ -215,6 +214,5 @@ class JrpcMessageDetailsViewFactory(private val project: Project, private val gs
 
 //        AnalyzeStacktraceUtil.addConsole(project, null, "The Contents", gson.toJson(data))
         }
-
     }
 }

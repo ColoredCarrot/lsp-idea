@@ -14,14 +14,16 @@ object LspCommandExecutionUtil {
 
     fun execute(command: Command, session: LspSession) {
         if (isSupportedByServer(command.command, session)) {
-            session.server.workspaceService.executeCommand(ExecuteCommandParams().apply {
-                // We have the luxury of just generating a random work done token,
-                // since we only create work done state on our side
-                // when we get a "begin work" notification
-                setWorkDoneToken(UUID.randomUUID().toString())
-                this.command = command.command
-                this.arguments = command.arguments
-            })
+            session.server.workspaceService.executeCommand(
+                ExecuteCommandParams().apply {
+                    // We have the luxury of just generating a random work done token,
+                    // since we only create work done state on our side
+                    // when we get a "begin work" notification
+                    setWorkDoneToken(UUID.randomUUID().toString())
+                    this.command = command.command
+                    this.arguments = command.arguments
+                }
+            )
             return
         }
 
@@ -37,5 +39,4 @@ object LspCommandExecutionUtil {
             session.project
         )
     }
-
 }

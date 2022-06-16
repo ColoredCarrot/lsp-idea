@@ -79,5 +79,4 @@ open class JrpcMessageView(
 
         return this
     }
-
 }

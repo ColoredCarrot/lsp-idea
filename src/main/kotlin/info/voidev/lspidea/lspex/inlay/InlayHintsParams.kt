@@ -13,5 +13,4 @@ open class InlayHintsParams constructor() {
         this.textDocument = textDocument
         this.range = range
     }
-
 }

@@ -24,5 +24,4 @@ object LspServerExecutableUtil {
         val firstTwoBytes = path.inputStream().use { it.readNBytes(2) }
         return firstTwoBytes[0] == 'M'.code.toByte() && firstTwoBytes[1] == 'Z'.code.toByte()
     }
-
 }

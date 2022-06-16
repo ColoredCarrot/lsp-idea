@@ -18,5 +18,4 @@ abstract class LspSingleArgCommandExecutor<T>(vararg supportedCommands: String, 
 
         execute(arg, command, session)
     }
-
 }

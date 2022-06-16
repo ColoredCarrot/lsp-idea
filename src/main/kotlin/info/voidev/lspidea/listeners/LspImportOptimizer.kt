@@ -19,7 +19,6 @@ class LspImportOptimizer : ImportOptimizer {
     }
 
     override fun processFile(file: PsiFile) = Runnable {
-        //TODO implement later, currently rust-analyzer doesn't support this: see https://github.com/rust-analyzer/rust-analyzer/issues/5131
+        // TODO implement later, currently rust-analyzer doesn't support this: see https://github.com/rust-analyzer/rust-analyzer/issues/5131
     }
-
 }

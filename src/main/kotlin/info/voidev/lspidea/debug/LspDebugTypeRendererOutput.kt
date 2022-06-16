@@ -7,5 +7,4 @@ interface LspDebugTypeRendererOutput {
     fun append(type: Type): LspDebugTypeRendererOutput
 
     fun append(text: String): LspDebugTypeRendererOutput
-
 }

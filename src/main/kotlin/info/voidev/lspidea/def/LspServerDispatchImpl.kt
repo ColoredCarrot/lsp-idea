@@ -60,5 +60,4 @@ class LspServerDispatchImpl : LspServerDispatch {
     override fun getForFile(file: VirtualFile): InstantiableLspServer? {
         return getServers().firstOrNull { it.definition.shouldActivateForFile(file) }
     }
-
 }

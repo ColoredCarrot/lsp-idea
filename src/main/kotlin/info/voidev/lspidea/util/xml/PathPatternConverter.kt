@@ -13,5 +13,4 @@ class PathPatternConverter : Converter<PathPattern?>() {
         }
         return PathPattern(value.trim())
     }
-
 }

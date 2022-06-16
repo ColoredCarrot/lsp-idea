@@ -19,5 +19,4 @@ class LspServerOptionsConfigState() : PolymorphicState<LspServerOptionsConfigSta
     override fun getClass(discriminator: String): Class<out LspServerOptionsConfigStateInterface> {
         return LspServerSupport.getById(discriminator)!!.createConfigDefaults().javaClass
     }
-
 }

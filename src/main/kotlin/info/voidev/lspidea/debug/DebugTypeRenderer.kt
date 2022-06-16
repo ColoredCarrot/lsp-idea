@@ -12,5 +12,4 @@ interface DebugTypeRenderer {
     fun canRender(type: Class<*>, genericType: Type?): Boolean
 
     fun render(type: Class<*>, genericType: Type?, output: LspDebugTypeRendererOutput)
-
 }

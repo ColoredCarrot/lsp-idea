@@ -14,5 +14,4 @@ value class LspHighlightingLegend(private val legend: SemanticTokensLegend?) {
             mask and encoded == mask
         }
     }
-
 }

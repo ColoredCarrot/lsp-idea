@@ -38,10 +38,12 @@ fun applyWorkspaceEdit(session: LspSession, edit: WorkspaceEdit, label: String?)
 private fun doApplyWorkspaceEdit(edit: WorkspaceEdit) {
     val changes = edit.documentChanges
         ?: edit.changes.map { (uri, editsInFile) ->
-            Either.forLeft(TextDocumentEdit(
-                VersionedTextDocumentIdentifier(uri, -1/*TODO better this*/),
-                editsInFile
-            ))
+            Either.forLeft(
+                TextDocumentEdit(
+                    VersionedTextDocumentIdentifier(uri, -1/*TODO better this*/),
+                    editsInFile
+                )
+            )
         }
         ?: emptyList()
     for (change in changes) {
@@ -52,20 +54,24 @@ private fun doApplyWorkspaceEdit(edit: WorkspaceEdit) {
 
 private fun doApplyEdit(edit: TextDocumentEdit) {
     val file = LspUtils.resolve(edit.textDocument.uri)
-        ?: throw ResponseErrorException(ResponseError(
-            ResponseErrorCode.InvalidRequest,
-            "Trying to edit a file that doesn't exist",
-            edit
-        ))
+        ?: throw ResponseErrorException(
+            ResponseError(
+                ResponseErrorCode.InvalidRequest,
+                "Trying to edit a file that doesn't exist",
+                edit
+            )
+        )
 
     // TODO: Validate that the edited file is reasonable, to protect ourselves
 
     val document = FileDocumentManager.getInstance().getDocument(file)
-        ?: throw ResponseErrorException(ResponseError(
-            ResponseErrorCode.InternalError,
-            "Failed to open file",
-            edit
-        ))
+        ?: throw ResponseErrorException(
+            ResponseError(
+                ResponseErrorCode.InternalError,
+                "Failed to open file",
+                edit
+            )
+        )
 
     document.applyEdits(edit.edits)
 }

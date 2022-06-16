@@ -49,5 +49,4 @@ object LspSemanticTokensParser {
 
         return result
     }
-
 }

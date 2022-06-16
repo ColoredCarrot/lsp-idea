@@ -53,5 +53,4 @@ class LspExtendWordSelectionHandler : ExtendWordSelectionHandler {
 
         return result*/
     }
-
 }

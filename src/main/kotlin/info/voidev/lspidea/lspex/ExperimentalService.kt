@@ -33,5 +33,4 @@ interface ExperimentalService {
     fun onEnter(params: TextDocumentPositionParams): CompletableFuture<List<SnippetTextEdit>> {
         throw UnsupportedOperationException()
     }
-
 }

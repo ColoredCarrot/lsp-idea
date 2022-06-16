@@ -13,5 +13,4 @@ class RustAnalyzerLspServer : LspServer {
     override val language get() = "Rust"
 
     override val documentationLinkSupport get() = RustDocumentationLinkSupport
-
 }

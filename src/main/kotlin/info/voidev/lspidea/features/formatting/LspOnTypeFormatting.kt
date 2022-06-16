@@ -30,12 +30,14 @@ class LspOnTypeFormatting : TypedHandlerDelegate() {
 
         if (!shouldInvokeFormatting(c, session.state.serverCapabilities)) return
 
-        val edits = session.server.textDocumentService.onTypeFormatting(DocumentOnTypeFormattingParams(
-            vfile.identifyForLsp(),
-            LspFormattingOptionsProvider.get(file),
-            editor.caretLspPosition,
-            "$c"
-        )).joinUnwrapExceptionsCancellable() // TODO specify an extraordinarily small timeout here
+        val edits = session.server.textDocumentService.onTypeFormatting(
+            DocumentOnTypeFormattingParams(
+                vfile.identifyForLsp(),
+                LspFormattingOptionsProvider.get(file),
+                editor.caretLspPosition,
+                "$c"
+            )
+        ).joinUnwrapExceptionsCancellable() // TODO specify an extraordinarily small timeout here
             ?.ifEmpty { null }
             ?: return
 
@@ -45,7 +47,6 @@ class LspOnTypeFormatting : TypedHandlerDelegate() {
     private fun shouldInvokeFormatting(c: Char, serverCaps: ServerCapabilities): Boolean {
         val provider = serverCaps.documentOnTypeFormattingProvider ?: return false
         return provider.firstTriggerCharacter.startsWith(c) ||
-                provider.moreTriggerCharacter.any { it.startsWith(c) }
+            provider.moreTriggerCharacter.any { it.startsWith(c) }
     }
-
 }

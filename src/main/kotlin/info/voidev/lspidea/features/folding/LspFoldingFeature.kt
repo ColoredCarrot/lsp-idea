@@ -19,5 +19,4 @@ object LspFoldingFeature : LspFeature {
         val options: FoldingRangeProviderOptions = serverFoldingCapabilities.right
         return true // TODO: Anything more to do here?
     }
-
 }

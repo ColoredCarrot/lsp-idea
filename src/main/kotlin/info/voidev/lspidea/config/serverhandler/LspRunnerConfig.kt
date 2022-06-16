@@ -37,12 +37,14 @@ class LspRunnerConfig(val origin: LspServerSupport<*>) : Config<LspRunnerConfigS
         mainComponent = JPanel(VerticalLayout(UIUtil.DEFAULT_VGAP))
 
         @Suppress("UnstableApiUsage")
-        mainComponent.add(panel {
-            row {
-                label("Server origin:")
-                cell(typeComboBox)
+        mainComponent.add(
+            panel {
+                row {
+                    label("Server origin:")
+                    cell(typeComboBox)
+                }
             }
-        })
+        )
 
         mainComponent.add(container)
 
@@ -116,5 +118,4 @@ class LspRunnerConfig(val origin: LspServerSupport<*>) : Config<LspRunnerConfigS
             append(value.displayName)
         }
     }
-
 }

@@ -21,5 +21,4 @@ object BeanProperties : ClassValue<Collection<BeanProperty>>() {
     private fun getAllFields(type: Class<*>): Sequence<Field> =
         generateSequence(type, Class<*>::getSuperclass)
             .flatMap { it.declaredFields.asSequence() }
-
 }

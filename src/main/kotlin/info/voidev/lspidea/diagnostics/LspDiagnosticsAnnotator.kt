@@ -40,12 +40,16 @@ class LspDiagnosticsAnnotator : ExternalAnnotator<FileDiagnostics?, List<Diagnos
         return if (collectedInfo.session.state.serverCapabilities.mayFetchCodeActions) {
             collectedInfo.diagnostics.map { diagnostic ->
 
-                val actions = collectedInfo.session.server.textDocumentService.codeAction(CodeActionParams(
-                    collectedInfo.file.identifyForLsp(),
-                    diagnostic.range,
-                    CodeActionContext(listOf(diagnostic),
-                        ALLOWED_CODE_ACTION_KINDS)
-                )).joinLsp(collectedInfo.session.project, "Could not fetch diagnostics")
+                val actions = collectedInfo.session.server.textDocumentService.codeAction(
+                    CodeActionParams(
+                        collectedInfo.file.identifyForLsp(),
+                        diagnostic.range,
+                        CodeActionContext(
+                            listOf(diagnostic),
+                            ALLOWED_CODE_ACTION_KINDS
+                        )
+                    )
+                ).joinLsp(collectedInfo.session.project, "Could not fetch diagnostics")
 
                 DiagnosticWithQuickFixes(diagnostic, actions.orEmpty())
             }
@@ -86,7 +90,7 @@ class LspDiagnosticsAnnotator : ExternalAnnotator<FileDiagnostics?, List<Diagnos
                     b.withFix(LspCodeActionIntentionAction(action))
                 }
 
-            //TODO: Add "Jump to..." intention to jump to any of org.eclipse.lsp4j.Diagnostic.relatedInformation
+            // TODO: Add "Jump to..." intention to jump to any of org.eclipse.lsp4j.Diagnostic.relatedInformation
 
             builder.create()
         }

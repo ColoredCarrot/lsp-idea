@@ -38,7 +38,7 @@ import java.util.concurrent.CompletableFuture
 
 class IdeaLanguageClient(private val project: Project?) : LanguageClient {
 
-    //FIXME: Sometimes throws because access-before-init in e.g. reportProgress
+    // FIXME: Sometimes throws because access-before-init in e.g. reportProgress
     internal var sessionOrNull: LspSession? = null
     private val session get() = sessionOrNull!!
 
@@ -65,9 +65,11 @@ class IdeaLanguageClient(private val project: Project?) : LanguageClient {
 
         LspNotification.requestGroup()
             .createNotification(requestParams.message, requestParams.type.asNotificationType())
-            .addActions(requestParams.actions.map { actionItem ->
-                LspAction(actionItem, future)
-            } as Collection<AnAction>)
+            .addActions(
+                requestParams.actions.map { actionItem ->
+                    LspAction(actionItem, future)
+                } as Collection<AnAction>
+            )
             .notify(project)
 
         return future
@@ -117,11 +119,13 @@ class IdeaLanguageClient(private val project: Project?) : LanguageClient {
         if (sessionOrNull == null) return
 
         if (session.state.status !in listOf(LspStatus.INITIALIZING, LspStatus.ACTIVE, LspStatus.FINALIZING)) {
-            throw ResponseErrorException(ResponseError(
-                ResponseErrorCode.InvalidRequest,
-                "Cannot notifyProgress for a session whose status is ${session.state.status}",
-                params
-            ))
+            throw ResponseErrorException(
+                ResponseError(
+                    ResponseErrorCode.InvalidRequest,
+                    "Cannot notifyProgress for a session whose status is ${session.state.status}",
+                    params
+                )
+            )
         }
 
         session.streamingSupport.notifyProgress(params)

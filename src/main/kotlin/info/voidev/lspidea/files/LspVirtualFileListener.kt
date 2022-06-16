@@ -50,5 +50,4 @@ class LspVirtualFileListener(private val session: LspSession) : BulkFileListener
 
         session.server.textDocumentService.didSave(DidSaveTextDocumentParams(evt.file.identifyForLsp(), text))
     }
-
 }

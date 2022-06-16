@@ -22,7 +22,7 @@ class LspDebugValueRendererOutputImpl(private val output: XValueTextRenderer) : 
     }
 
     override fun appendText(text: String) {
-        //TODO potentially better output.renderSpecialSymbol(text)
+        // TODO potentially better output.renderSpecialSymbol(text)
         output.renderValue(text)
     }
 
@@ -33,5 +33,4 @@ class LspDebugValueRendererOutputImpl(private val output: XValueTextRenderer) : 
     override fun appendError(error: String) {
         output.renderError(error)
     }
-
 }

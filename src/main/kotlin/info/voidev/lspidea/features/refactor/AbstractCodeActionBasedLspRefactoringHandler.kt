@@ -35,5 +35,4 @@ abstract class AbstractCodeActionBasedLspRefactoringHandler(@NlsContexts.DialogT
 
         LspCodeActionExecutor.execute(theAction, session)
     }
-
 }

@@ -17,5 +17,4 @@ class IoStreamBridge(private val src: InputStream, private val sink: OutputStrea
         }
         sink.flush()
     }
-
 }

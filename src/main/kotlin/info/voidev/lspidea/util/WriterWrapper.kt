@@ -5,7 +5,7 @@ import java.io.Writer
 class WriterWrapper(var delegate: Writer? = null) : Writer() {
 
     init {
-        //FIXME remove
+        // FIXME remove
 //        delegate = System.err.writer()
     }
 

@@ -15,5 +15,4 @@ class FieldBeanProperty(private val _field: Field) : BeanProperty, AnnotatedElem
     override val type: Type get() = _field.genericType
 
     override fun get(instance: Any): Any? = _field.get(instance)
-
 }

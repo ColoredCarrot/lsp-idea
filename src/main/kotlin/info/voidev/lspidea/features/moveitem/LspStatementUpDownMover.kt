@@ -43,11 +43,13 @@ class LspStatementUpDownMover : StatementUpDownMover() {
         val file = FileDocumentManager.getInstance().getFile(editor.document) ?: return
         val session = LspSessionManager.getInstance(project).getForFile(file) ?: return
 
-        val edits = session.server.experimentalService.moveItem(MoveItemParams(
-            file.identifyForLsp(),
-            editor.document.range2lspRange(editor.selectionModel.selectionStart, editor.selectionModel.selectionEnd),
-            if (down) Direction.Down else Direction.Up
-        )).joinUnwrapExceptionsCancellable()
+        val edits = session.server.experimentalService.moveItem(
+            MoveItemParams(
+                file.identifyForLsp(),
+                editor.document.range2lspRange(editor.selectionModel.selectionStart, editor.selectionModel.selectionEnd),
+                if (down) Direction.Down else Direction.Up
+            )
+        ).joinUnwrapExceptionsCancellable()
 
         // TODO: Validate that there is at most one snippet, BUT:
         //  rust-analyzer sends multiple edits with insertTextFormat == Snippet;
@@ -71,5 +73,4 @@ class LspStatementUpDownMover : StatementUpDownMover() {
         resolvedEdits.sortForApplyingToDocument()
         resolvedEdits.forEach { it.applyTo(editor.document) }
     }
-
 }

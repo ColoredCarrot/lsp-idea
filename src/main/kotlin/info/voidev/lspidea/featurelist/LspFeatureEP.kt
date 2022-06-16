@@ -29,7 +29,7 @@ class LspFeatureEP {
     }
 }
 
-//class LspFeatureSetEP {
+// class LspFeatureSetEP {
 //
 //    @Property(surroundWithTag = false)
 //    @XCollection
@@ -48,4 +48,4 @@ class LspFeatureEP {
 //        @JvmStatic
 //        val EP_NAME = ExtensionPointName.create<LspFeatureSetEP>(LspIdea.EP_PREFIX + "featureSet")
 //    }
-//}
+// }

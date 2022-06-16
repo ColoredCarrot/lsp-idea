@@ -42,9 +42,11 @@ object LspSessionConstructor {
                 logger.warn("LSP session construction threw, destroying session", t)
 
                 if (t is ResponseErrorException) {
-                    LspIdea.showResponseError("Failed to initialize language server",
+                    LspIdea.showResponseError(
+                        "Failed to initialize language server",
                         t.responseError,
-                        state.project)
+                        state.project
+                    )
                 } else {
                     LspIdea.showError("Failed to initialize language server", state.project)
                 }
@@ -126,7 +128,7 @@ object LspSessionConstructor {
         }
 
         val response: InitializeResult = state.server.initialize(initParams)
-            .joinUnwrapExceptionsCancellable(indicator =  indicator)
+            .joinUnwrapExceptionsCancellable(indicator = indicator)
 
         indicator.checkCanceled()
 
@@ -151,8 +153,6 @@ object LspSessionConstructor {
             }
             TextDocumentSyncKind.Full -> TODO()
             TextDocumentSyncKind.Incremental -> {
-
-
             }
         }
     }
@@ -160,7 +160,7 @@ object LspSessionConstructor {
     private fun processTextDocSyncOptions(syncOptions: TextDocumentSyncOptions) {
         if (syncOptions.openClose == true) {
             // Need to send didOpen and didClose
-            //TODO store this info somewhere
+            // TODO store this info somewhere
         }
         processTextDocSyncKind(syncOptions.change ?: TextDocumentSyncKind.None)
     }

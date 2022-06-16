@@ -9,5 +9,4 @@ interface LspFeatureRegistry {
     fun register(feature: LspFeature)
 
     fun unregister(feature: LspFeature)
-
 }

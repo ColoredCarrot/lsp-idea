@@ -87,7 +87,7 @@ class JrpcMessageLogView(private val project: Project, gson: Gson) : JrpcMessage
             }
         })
         listComp.addKeyListener(object : KeyAdapter() {
-            //FIXME not triggered
+            // FIXME not triggered
             override fun keyPressed(e: KeyEvent?) {
                 e ?: return
                 if (e.keyCode != KeyEvent.VK_LEFT && e.keyCode != KeyEvent.VK_RIGHT && e.keyCode != KeyEvent.VK_ENTER) {
@@ -95,12 +95,15 @@ class JrpcMessageLogView(private val project: Project, gson: Gson) : JrpcMessage
                 }
 
                 for (selectedIndex in listComp.selectedIndices) {
-                    triggerExpandOrCollapse(selectedIndex, when (e.keyCode) {
-                        KeyEvent.VK_LEFT -> ThreeState.NO
-                        KeyEvent.VK_RIGHT -> ThreeState.YES
-                        KeyEvent.VK_ENTER -> ThreeState.UNSURE
-                        else -> throw AssertionError()
-                    })
+                    triggerExpandOrCollapse(
+                        selectedIndex,
+                        when (e.keyCode) {
+                            KeyEvent.VK_LEFT -> ThreeState.NO
+                            KeyEvent.VK_RIGHT -> ThreeState.YES
+                            KeyEvent.VK_ENTER -> ThreeState.UNSURE
+                            else -> throw AssertionError()
+                        }
+                    )
                 }
                 e.consume()
             }

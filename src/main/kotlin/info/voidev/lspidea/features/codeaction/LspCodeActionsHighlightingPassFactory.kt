@@ -20,5 +20,4 @@ class LspCodeActionsHighlightingPassFactory :
     override fun createHighlightingPass(file: PsiFile, editor: Editor): TextEditorHighlightingPass? {
         return LspCodeActionsHighlightingPass(file.project, editor)
     }
-
 }

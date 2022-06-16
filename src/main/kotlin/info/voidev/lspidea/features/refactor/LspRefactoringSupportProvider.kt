@@ -11,5 +11,4 @@ class LspRefactoringSupportProvider : RefactoringSupportProvider() {
     override fun getIntroduceVariableHandler() = LspIntroduceVariableHandler
 
     override fun getIntroduceConstantHandler() = LspIntroduceConstantHandler
-
 }

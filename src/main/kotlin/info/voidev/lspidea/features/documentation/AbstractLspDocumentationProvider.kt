@@ -15,13 +15,16 @@ import org.intellij.markdown.parser.MarkdownParser
 abstract class AbstractLspDocumentationProvider : AbstractDocumentationProvider() {
 
     protected fun convertMarkedStrings(parts: List<Either<String, MarkedString>>): MarkupContent {
-        return MarkupContent(MarkupKind.MARKDOWN, parts.joinToString("\n\n") { part ->
-            if (part.isLeft) {
-                part.left
-            } else {
-                "```${part.right.language}\n${part.right.value}\n```"
+        return MarkupContent(
+            MarkupKind.MARKDOWN,
+            parts.joinToString("\n\n") { part ->
+                if (part.isLeft) {
+                    part.left
+                } else {
+                    "```${part.right.language}\n${part.right.value}\n```"
+                }
             }
-        })
+        )
     }
 
     protected fun translateMarkup(
@@ -51,8 +54,8 @@ abstract class AbstractLspDocumentationProvider : AbstractDocumentationProvider(
     }
 
     private fun markdown2htmlLegacy(markdown: String): String {
-        //TODO: Links don't seem to be translated properly. Check MarkdownUtil.generateMarkdownHtml()
-        //TODO: Relatedly, implement info.voidev.lspidea.features.documentation.LspDocumentationProvider.getDocumentationElementForLink
+        // TODO: Links don't seem to be translated properly. Check MarkdownUtil.generateMarkdownHtml()
+        // TODO: Relatedly, implement info.voidev.lspidea.features.documentation.LspDocumentationProvider.getDocumentationElementForLink
         val parsedTree = MarkdownParser(LspMarkdownFlavor).buildMarkdownTreeFromString(markdown)
         return HtmlGenerator(markdown, parsedTree, LspMarkdownFlavor, true).generateHtml()
     }

@@ -63,5 +63,4 @@ class GenericLspServerConfig : Config<GenericLspServerConfigState> {
 
     override fun dispose() {
     }
-
 }

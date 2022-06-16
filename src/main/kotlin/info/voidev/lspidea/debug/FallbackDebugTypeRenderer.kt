@@ -44,5 +44,4 @@ object FallbackDebugTypeRenderer : DebugTypeRenderer {
         }
         output.append(">")
     }
-
 }

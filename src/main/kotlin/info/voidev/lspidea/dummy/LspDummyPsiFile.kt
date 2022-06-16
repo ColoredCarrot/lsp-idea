@@ -15,7 +15,7 @@ class LspDummyPsiFile(viewProvider: FileViewProvider) : PsiFileBase(viewProvider
 
     override fun findElementAt(offset: Int): PsiElement? {
         val originatingRange = LspGotoDeclarationHandler.currentOriginatingRange
-        if (originatingRange != null && offset in originatingRange && false) {//FIXME
+        if (originatingRange != null && offset in originatingRange && false) { // FIXME
             /*
             We inspect the stack trace to find out if we're currently in the process
             of a "goto declaration"

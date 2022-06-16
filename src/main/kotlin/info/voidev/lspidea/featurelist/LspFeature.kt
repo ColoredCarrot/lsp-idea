@@ -8,5 +8,4 @@ interface LspFeature {
     val displayName: @Nls String
 
     fun isAvailable(session: LspSession): Boolean
-
 }

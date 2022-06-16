@@ -86,5 +86,4 @@ class LspSnippetParser(private val tokens: Iterator<LspSnippetToken>) : Iterator
     }
 
     private fun parseError(msg: String): Nothing = throw LspSnippetParseException(msg)
-
 }

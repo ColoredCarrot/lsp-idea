@@ -61,5 +61,4 @@ object LspIdea {
     val thePluginId get() = PluginId.findId("info.voidev.lspidea")!!
 
     val thePlugin get() = PluginManagerCore.getPlugin(thePluginId)!!
-
 }

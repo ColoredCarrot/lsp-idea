@@ -34,5 +34,4 @@ class LspRenameHandler : RenameHandler {
         val renameProvider = session.state.serverCapabilities.renameProvider ?: return false
         return renameProvider.left != false
     }
-
 }

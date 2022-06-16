@@ -13,5 +13,4 @@ open class RustAnalyzerRunnable {
     lateinit var kind: String
 
     lateinit var args: CargoRunnable
-
 }

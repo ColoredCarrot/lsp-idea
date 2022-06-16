@@ -10,5 +10,4 @@ class PathConverter : Converter<Path>() {
     override fun toString(value: Path) = FileUtilRt.toSystemIndependentName(value.toString())
 
     override fun fromString(value: String) = Path(FileUtilRt.toSystemDependentName(value))
-
 }

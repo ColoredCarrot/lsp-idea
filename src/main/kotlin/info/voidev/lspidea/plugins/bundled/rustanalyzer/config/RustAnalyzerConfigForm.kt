@@ -22,5 +22,4 @@ class RustAnalyzerConfigForm(panel: Panel) : Form(panel) {
         var documentation by checkBoxOrDefault("Documentation")
         var linksInHover by checkBoxOrDefault("Links in hover")
     }
-
 }

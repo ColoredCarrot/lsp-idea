@@ -62,5 +62,4 @@ open class JInvisible(private val delegate: Component) : JComponent() {
     override fun resize(d: Dimension?) = delegate.resize(d)
 
     override fun resize(width: Int, height: Int) = delegate.resize(width, height)
-
 }

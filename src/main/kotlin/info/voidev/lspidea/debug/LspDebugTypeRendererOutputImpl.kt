@@ -26,7 +26,6 @@ class LspDebugTypeRendererOutputImpl : LspDebugTypeRendererOutput {
         sb.append(text)
         return this
     }
-
 }
 
 fun Type.renderForLspDebug() = LspDebugTypeRendererOutputImpl().append(this).finish()

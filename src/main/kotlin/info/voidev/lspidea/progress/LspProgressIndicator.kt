@@ -25,5 +25,4 @@ class LspProgressIndicator(
     private fun handleCancelled() {
         server.cancelProgress(WorkDoneProgressCancelParams(token))
     }
-
 }

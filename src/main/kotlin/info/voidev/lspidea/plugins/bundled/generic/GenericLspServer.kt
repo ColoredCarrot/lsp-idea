@@ -7,5 +7,4 @@ class GenericLspServer : LspServer {
     override val displayName get() = "other"
 
     override val language get() = "generic"
-
 }

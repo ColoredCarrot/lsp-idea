@@ -14,7 +14,7 @@ data class JrpcMessageCapture(
     /** the actual message, or `null` if it wasn't captured */
     val message: Message?,
     val stackTrace: StackTrace?,
-    //TODO: Might also capture handling thread
+    // TODO: Might also capture handling thread
 )
 
 enum class JrpcMessageDirection {

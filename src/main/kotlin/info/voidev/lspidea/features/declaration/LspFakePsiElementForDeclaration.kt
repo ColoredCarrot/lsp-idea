@@ -8,7 +8,7 @@ import info.voidev.lspidea.misc.LspFakeLanguage
 
 class LspFakePsiElementForDeclaration(
     private val navigable: Navigatable,
-    private val originatingRange: TextRange,//FIXME HOW TF DO WE ACTUALLY TELL INTELLIJ ABOUT THIS
+    private val originatingRange: TextRange, // FIXME HOW TF DO WE ACTUALLY TELL INTELLIJ ABOUT THIS
     manager: PsiManager,
 ) : LightElement(manager, LspFakeLanguage) {
 
@@ -19,5 +19,4 @@ class LspFakePsiElementForDeclaration(
     override fun canNavigateToSource() = navigable.canNavigateToSource()
 
     override fun navigate(requestFocus: Boolean) = navigable.navigate(requestFocus)
-
 }

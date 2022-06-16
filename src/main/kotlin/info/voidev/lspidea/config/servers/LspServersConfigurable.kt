@@ -49,7 +49,6 @@ class LspServersConfigurable : Configurable, Configurable.WithEpDependencies {
     override fun apply() {
         val uiState = getApply()
         LspServersConfig.getInstance().loadState(uiState)
-
     }
 
     private fun getApply(): LspServersConfig.State {

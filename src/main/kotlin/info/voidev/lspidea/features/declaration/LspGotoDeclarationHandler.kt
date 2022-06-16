@@ -49,17 +49,21 @@ class LspGotoDeclarationHandler : GotoDeclarationHandler {
         // depending on what the server supports,
         // and also a setting
         val resp = (
-                if (!session.state.serverDef.preferGotoDefinition && session.state.serverCapabilities.supportsDeclaration())
-                    session.server.textDocumentService.declaration(DeclarationParams(
+            if (!session.state.serverDef.preferGotoDefinition && session.state.serverCapabilities.supportsDeclaration())
+                session.server.textDocumentService.declaration(
+                    DeclarationParams(
                         file.identifyForLsp(),
                         editor.document.offset2lspPosition(offset)
-                    ))
-                else
-                    session.server.textDocumentService.definition(DefinitionParams(
+                    )
+                )
+            else
+                session.server.textDocumentService.definition(
+                    DefinitionParams(
                         file.identifyForLsp(),
                         editor.document.offset2lspPosition(offset)
-                    ))
-                ).joinUnwrapExceptionsCancellable() ?: return null
+                    )
+                )
+            ).joinUnwrapExceptionsCancellable() ?: return null
 
         return if (resp.isLeft) {
             resp.left.mapToArray<Location, PsiElement> { location ->
@@ -74,8 +78,10 @@ class LspGotoDeclarationHandler : GotoDeclarationHandler {
             }.ifEmpty { null }
         } else if (resp.isRight) {
             resp.right.mapToArray<LocationLink, PsiElement> { locationLink ->
-                val originatingRange = (locationLink.originSelectionRange?.let(editor.document::lspRange2range)
-                    ?: guessOriginatingRange(editor.document, offset))
+                val originatingRange = (
+                    locationLink.originSelectionRange?.let(editor.document::lspRange2range)
+                        ?: guessOriginatingRange(editor.document, offset)
+                    )
                 currentOriginatingRange = originatingRange
 
                 LspFakePsiElementForDeclaration(

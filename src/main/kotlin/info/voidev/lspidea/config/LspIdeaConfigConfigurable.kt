@@ -19,7 +19,7 @@ class LspIdeaConfigConfigurable(private val project: Project) : Configurable {
         val config = LspIdeaConfig.getInstance(project).state
         return try {
             comp.foo != config.fooValue ||
-                    comp.maxSelectionRanges != config.maxSelectionRanges
+                comp.maxSelectionRanges != config.maxSelectionRanges
         } catch (_: ConfigurationException) {
             true
         }
@@ -44,5 +44,4 @@ class LspIdeaConfigConfigurable(private val project: Project) : Configurable {
     }
 
     override fun getDisplayName() = "LSP-IDEA"
-
 }

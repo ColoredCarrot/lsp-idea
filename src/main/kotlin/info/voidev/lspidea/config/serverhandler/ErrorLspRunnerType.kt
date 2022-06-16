@@ -23,7 +23,7 @@ import javax.swing.JComponent
 class ErrorLspRunnerType(id: String) : LspRunnerType<LspRunnerConfigStateInterface>(
     id,
     ColoredText.singleFragment("Error", SimpleTextAttributes.ERROR_ATTRIBUTES),
-    LspRunnerConfigStateInterface::class.java//TODO
+    LspRunnerConfigStateInterface::class.java // TODO
 ) {
 
     override fun createConfig(origin: LspServerSupport<*>): Config<LspRunnerConfigStateInterface> {
@@ -35,9 +35,12 @@ class ErrorLspRunnerType(id: String) : LspRunnerType<LspRunnerConfigStateInterfa
                 val errorStyle = SimpleTextAttributes.ERROR_ATTRIBUTES
                 val boldErrorStyle = errorStyle.derive(SimpleTextAttributes.STYLE_BOLD, null, null, null)
                 comp.append("Error: ", boldErrorStyle)
-                comp.append("""Missing language server process handler type $id. 
+                comp.append(
+                    """Missing language server process handler type $id. 
                     |This is usually caused by a missing support plugin. 
-                    |Reinstalling the plugin will recover the configuration.""".trimMargin(), errorStyle)
+                    |Reinstalling the plugin will recover the configuration.""".trimMargin(),
+                    errorStyle
+                )
             }
 
             override fun apply() = errorState ?: object : LspRunnerConfigStateInterface {}

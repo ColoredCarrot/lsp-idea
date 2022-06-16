@@ -50,5 +50,4 @@ abstract class AbstractLspRefactoringHandler(
     protected open fun showCannotRefactorHint(project: Project, editor: Editor?) {
         showErrorHint(RefactoringBundle.message("cannot.perform.refactoring"), editor, project)
     }
-
 }

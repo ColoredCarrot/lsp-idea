@@ -57,10 +57,12 @@ class LspInlayProvider : InlayHintsProvider<NoSettings> {
                     return false
                 }
 
-                val inlays = session.server.experimentalService.inlayHints(InlayHintsParams(
-                    vfile.identifyForLsp(),
-                    editor.document.range2lspRange(0, editor.document.textLength)
-                ))
+                val inlays = session.server.experimentalService.inlayHints(
+                    InlayHintsParams(
+                        vfile.identifyForLsp(),
+                        editor.document.range2lspRange(0, editor.document.textLength)
+                    )
+                )
                     .joinLsp(session.project, "Could not fetch inlay hints")
                     .orEmpty()
 

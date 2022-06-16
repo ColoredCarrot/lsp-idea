@@ -10,7 +10,6 @@ import com.intellij.ui.layout.ComponentPredicate
 import com.intellij.ui.tabs.JBTabs
 import com.intellij.ui.tabs.TabInfo
 import info.voidev.lspidea.connect.LspSession
-import info.voidev.lspidea.connect.LspStatus
 import info.voidev.lspidea.toolwindow.CustomizableSelectionAwareListCellRenderer
 import javax.swing.AbstractButton
 import javax.swing.JComponent
@@ -37,7 +36,6 @@ fun <T : JComponent> Cell<T>.enabledWithSession(session: LspSession) = enabledIf
     override fun invoke() = session.isActive
 })
 
-
 fun Cell<AbstractButton>.bindSelectedDirectly(prop: KMutableProperty0<Boolean>) =
     bindSelectedDirectly(prop.getter, prop.setter)
 
@@ -47,7 +45,6 @@ inline fun Cell<AbstractButton>.bindSelectedDirectly(getProp: () -> Boolean, cro
 
     return this
 }
-
 
 operator fun TextAccessor.getValue(thisRef: Any?, property: KProperty<*>): String = text
 

@@ -16,7 +16,7 @@ open class LspChooseByNameContributor(
 ) : ChooseByNameContributorEx2 {
 
     override fun processNames(processor: Processor<in String>, parameters: FindSymbolParameters) {
-        //TODO or localPatternName?
+        // TODO or localPatternName?
         LspSymbolProvider.get(parameters.completePattern, parameters.project)
             .filter { it.info.kind in filterByKind }
             .filter { it.file?.let(parameters.searchScope::contains) == true }
@@ -37,7 +37,7 @@ open class LspChooseByNameContributor(
         processor: Processor<in NavigationItem>,
         parameters: FindSymbolParameters,
     ) {
-        //TODO or localPatternName?
+        // TODO or localPatternName?
         LspSymbolProvider.get(parameters.completePattern, parameters.project)
             .filter { it.info.kind in filterByKind }
             .filter { it.file?.let(parameters.searchScope::contains) == true }
@@ -46,28 +46,34 @@ open class LspChooseByNameContributor(
     }
 }
 
-class LspGoToClassContributor : LspChooseByNameContributor(EnumSet.of(
-    SymbolKind.Class,
-    SymbolKind.Enum,
-    SymbolKind.Interface,
-    SymbolKind.Struct,
-))
+class LspGoToClassContributor : LspChooseByNameContributor(
+    EnumSet.of(
+        SymbolKind.Class,
+        SymbolKind.Enum,
+        SymbolKind.Interface,
+        SymbolKind.Struct,
+    )
+)
 
-class LspGoToSymbolContributor : LspChooseByNameContributor(EnumSet.of(
-    SymbolKind.Class,
-    SymbolKind.Enum,
-    SymbolKind.Interface,
-    SymbolKind.Struct,
+class LspGoToSymbolContributor : LspChooseByNameContributor(
+    EnumSet.of(
+        SymbolKind.Class,
+        SymbolKind.Enum,
+        SymbolKind.Interface,
+        SymbolKind.Struct,
 
-    SymbolKind.Method,
-    SymbolKind.Property,
-    SymbolKind.Field,
-    SymbolKind.Function,
-    SymbolKind.Constant,
-    SymbolKind.EnumMember,
-    SymbolKind.Operator,
-))
+        SymbolKind.Method,
+        SymbolKind.Property,
+        SymbolKind.Field,
+        SymbolKind.Function,
+        SymbolKind.Constant,
+        SymbolKind.EnumMember,
+        SymbolKind.Operator,
+    )
+)
 
-class LspGoToFileContributor : LspChooseByNameContributor(EnumSet.of(
-    SymbolKind.File
-))
+class LspGoToFileContributor : LspChooseByNameContributor(
+    EnumSet.of(
+        SymbolKind.File
+    )
+)

@@ -47,11 +47,13 @@ class LspReferencesAction : AnAction(), DumbAware {
         // TODO: Immediately open a popup that says "Loading..."
         //  because otherwise, the user has no feedback anything is happening
 
-        session.server.textDocumentService.references(ReferenceParams(
-            file.identifyForLsp(),
-            editor.caretLspPosition,
-            ReferenceContext(false)
-        )).handleOnEdt(session) { rawRefs, throwable ->
+        session.server.textDocumentService.references(
+            ReferenceParams(
+                file.identifyForLsp(),
+                editor.caretLspPosition,
+                ReferenceContext(false)
+            )
+        ).handleOnEdt(session) { rawRefs, throwable ->
             if (throwable != null || rawRefs == null) {
                 if (throwable is ResponseErrorException) {
                     LspIdea.showResponseError("Could not fetch references", throwable.responseError, project)

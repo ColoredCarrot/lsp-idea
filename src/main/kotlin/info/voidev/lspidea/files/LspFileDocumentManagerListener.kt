@@ -47,5 +47,4 @@ class LspFileDocumentManagerListener : FileDocumentManagerListener {
     override fun unsavedDocumentDropped(document: Document) {
         // TODO Check if this is really not needed
     }
-
 }

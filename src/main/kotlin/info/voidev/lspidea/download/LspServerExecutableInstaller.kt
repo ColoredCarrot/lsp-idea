@@ -7,5 +7,4 @@ import javax.swing.JComponent
 interface LspServerExecutableInstaller {
 
     fun download(uiContext: JComponent): CompletionStage<Path>?
-
 }

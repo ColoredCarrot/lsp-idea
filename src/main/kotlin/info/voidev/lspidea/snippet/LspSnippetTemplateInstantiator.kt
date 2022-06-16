@@ -41,7 +41,7 @@ object LspSnippetTemplateInstantiator {
                 Variable(
                     comp.variableName,
                     null,
-                    //TODO for choice, override com.intellij.codeInsight.template.Expression::calculateLookupItems
+                    // TODO for choice, override com.intellij.codeInsight.template.Expression::calculateLookupItems
                     comp.placeholder?.let { TextExpression(it) },
                     true,
                     false
@@ -51,5 +51,4 @@ object LspSnippetTemplateInstantiator {
     }
 
     private val LspSnippetComponent.TabStop.variableName get() = "tabStop$index"
-
 }

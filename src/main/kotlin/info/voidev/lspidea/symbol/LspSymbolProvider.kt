@@ -47,5 +47,4 @@ object LspSymbolProvider {
                 .map { LspSymbol(session, it) }
         }
     }
-
 }

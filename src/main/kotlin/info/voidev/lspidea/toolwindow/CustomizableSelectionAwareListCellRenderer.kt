@@ -25,5 +25,4 @@ class CustomizableSelectionAwareListCellRenderer<T>(private val delegate: (T) ->
 
         return comp
     }
-
 }

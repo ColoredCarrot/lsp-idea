@@ -1,17 +1,17 @@
 package info.voidev.lspidea.debug
 
-//import com.intellij.xdebugger.frame.XCompositeNode
-//import com.intellij.xdebugger.frame.XValue
-//import com.intellij.xdebugger.frame.XValueChildrenList
-//import com.intellij.xdebugger.frame.XValueNode
-//import com.intellij.xdebugger.frame.XValuePlace
-//import com.intellij.xdebugger.frame.presentation.XValuePresentation
-//import org.eclipse.lsp4j.Position
-//import org.eclipse.lsp4j.jsonrpc.validation.NonNull
-//import org.jetbrains.annotations.NotNull
-//import java.lang.reflect.Type
+// import com.intellij.xdebugger.frame.XCompositeNode
+// import com.intellij.xdebugger.frame.XValue
+// import com.intellij.xdebugger.frame.XValueChildrenList
+// import com.intellij.xdebugger.frame.XValueNode
+// import com.intellij.xdebugger.frame.XValuePlace
+// import com.intellij.xdebugger.frame.presentation.XValuePresentation
+// import org.eclipse.lsp4j.Position
+// import org.eclipse.lsp4j.jsonrpc.validation.NonNull
+// import org.jetbrains.annotations.NotNull
+// import java.lang.reflect.Type
 //
-//class OLDLspXValue(private val type: Type, private val value: Any?, private val nonNull: Boolean) : XValue() {
+// class OLDLspXValue(private val type: Type, private val value: Any?, private val nonNull: Boolean) : XValue() {
 //
 //    private val props by lazy(LazyThreadSafetyMode.PUBLICATION) {
 //
@@ -68,4 +68,4 @@ package info.voidev.lspidea.debug
 //        private const val JAVA_LANG_PACKAGE = "java.lang"
 //        private val LSP4J_PACKAGE: String = Position::class.java.packageName
 //    }
-//}
+// }

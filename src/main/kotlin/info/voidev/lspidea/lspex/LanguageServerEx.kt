@@ -25,5 +25,4 @@ interface LanguageServerEx : LanguageServer {
     fun fakeNotification(params: JsonObject) {
         throw UnsupportedOperationException()
     }
-
 }

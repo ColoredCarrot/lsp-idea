@@ -47,5 +47,4 @@ class LspSnippet(val components: List<LspSnippetComponent>) {
 
         isSimple = components.all { it is LspSnippetComponent.Text }
     }
-
 }

@@ -12,5 +12,4 @@ class LocalProcessLspRunnerProvider(private val config: LocalProcessLspRunnerCon
             .directory(baseDir.absolute().toFile())
         return LspLocalServerProcessHandler(processBuilder)
     }
-
 }

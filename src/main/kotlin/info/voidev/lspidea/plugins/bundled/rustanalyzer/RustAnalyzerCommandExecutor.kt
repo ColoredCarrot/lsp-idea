@@ -17,5 +17,4 @@ class RustAnalyzerCommandExecutor : LspSingleArgCommandExecutor<RustAnalyzerRunn
         val runner = RustAnalyzerRunner(session)
         runner.run(arg.args, arg.label.ifBlank { "cargo" })
     }
-
 }

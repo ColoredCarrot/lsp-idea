@@ -18,12 +18,12 @@ object LspFileType : LanguageFileType(LspFakeLanguage), FileTypeIdentifiableByVi
     override fun getDefaultExtension() = "txt"
 
     override fun getIcon(): Icon? {
-        return AllIcons.FileTypes.Any_type //TODO
+        return AllIcons.FileTypes.Any_type // TODO
     }
 
     override fun isMyFileType(file: VirtualFile): Boolean {
         if (file is StubVirtualFile) {
-            //TODO will we ever support them?
+            // TODO will we ever support them?
             return false
         }
         return ProjectLocator.getInstance().getProjectsForFile(file).any { project ->

@@ -20,5 +20,4 @@ class JrpcDebugger {
     var captureStackTraces = false
 
     var serverStderr: InputStream? = null
-
 }

@@ -14,5 +14,4 @@ class LspRestartAllSessionsAction : AnAction() {
         val project = e.project!!
         LspSessionManager.getInstance(project).destroyAll()
     }
-
 }

@@ -57,42 +57,44 @@ class LspSessionToolWindow(private val session: LspSession) : Disposable {
         val serverInfo = session.state.serverInfo
 
         @Suppress("UnstableApiUsage")
-        return JBScrollPane(panel {
-            collapsibleGroup("Information") {
-                row("Server:") {
-                    cell(Label(serverInfo.name, bold = true))
-                }
-                row("Version:") {
-                    // TODO make copyable by clicking on it
-                    label(serverInfo.version ?: "unknown")
-                }
-                row("Started:") {
-                    val startedLocalTime = LocalTime.ofInstant(session.createdWhen, ZoneId.systemDefault())
-                    label(startedLocalTime.format(TIME_FORMAT_HM))
-                }
-            }.also { it.expanded = true }
-            collapsibleGroup("Controls") {
-                row {
-                    button("Stop") {
-                        session.destroy()
-                    }.enabledWithSession(session)
-                }
-            }.also { it.expanded = true }
-            collapsibleGroup("Debug Options") {
-                row("Capture:") {
-                    checkBox("Contents").bindSelectedDirectly(session.state.debugger::captureContents)
-                    checkBox("Stacktraces").bindSelectedDirectly(session.state.debugger::captureStackTraces)
-                }
-                row {
-                    button("Fake Request") {
-                        session.server.fakeRequest(JsonObject())
-                    }.enabledWithSession(session)
-                    button("Fake Notification") {
-                        session.server.fakeNotification(JsonObject())
-                    }.enabledWithSession(session)
+        return JBScrollPane(
+            panel {
+                collapsibleGroup("Information") {
+                    row("Server:") {
+                        cell(Label(serverInfo.name, bold = true))
+                    }
+                    row("Version:") {
+                        // TODO make copyable by clicking on it
+                        label(serverInfo.version ?: "unknown")
+                    }
+                    row("Started:") {
+                        val startedLocalTime = LocalTime.ofInstant(session.createdWhen, ZoneId.systemDefault())
+                        label(startedLocalTime.format(TIME_FORMAT_HM))
+                    }
+                }.also { it.expanded = true }
+                collapsibleGroup("Controls") {
+                    row {
+                        button("Stop") {
+                            session.destroy()
+                        }.enabledWithSession(session)
+                    }
+                }.also { it.expanded = true }
+                collapsibleGroup("Debug Options") {
+                    row("Capture:") {
+                        checkBox("Contents").bindSelectedDirectly(session.state.debugger::captureContents)
+                        checkBox("Stacktraces").bindSelectedDirectly(session.state.debugger::captureStackTraces)
+                    }
+                    row {
+                        button("Fake Request") {
+                            session.server.fakeRequest(JsonObject())
+                        }.enabledWithSession(session)
+                        button("Fake Notification") {
+                            session.server.fakeNotification(JsonObject())
+                        }.enabledWithSession(session)
+                    }
                 }
             }
-        })
+        )
     }
 
     private fun createMessageLog(): JComponent {

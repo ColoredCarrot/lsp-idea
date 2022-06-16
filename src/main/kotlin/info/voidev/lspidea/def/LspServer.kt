@@ -34,5 +34,4 @@ interface LspServer {
     val smartEnterSupport: LspSmartEnterSupport? get() = null
     val documentationLinkSupport: LspDocumentationLinkSupport? get() = null
     val preferGotoDefinition: Boolean get() = true
-
 }

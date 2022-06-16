@@ -26,10 +26,12 @@ class LspJoinLinesHandler : JoinRawLinesHandlerDelegate {
         // but it should be close enough
         val pos = document.offset2lspPosition(start)
 
-        val edits = session.server.experimentalService.joinLines(JoinLinesParams(
-            vfile.identifyForLsp(),
-            listOf(Range(pos, pos))
-        )).joinUnwrapExceptionsCancellable()
+        val edits = session.server.experimentalService.joinLines(
+            JoinLinesParams(
+                vfile.identifyForLsp(),
+                listOf(Range(pos, pos))
+            )
+        ).joinUnwrapExceptionsCancellable()
 
         if (edits.isEmpty()) return -1
 
@@ -39,5 +41,4 @@ class LspJoinLinesHandler : JoinRawLinesHandlerDelegate {
         //  (once this graduates from experimental)
         return start
     }
-
 }

@@ -36,7 +36,8 @@ object LSPLauncherEx {
      */
     fun createClientLauncher(
         client: LanguageClient,
-        `in`: InputStream, out: OutputStream,
+        `in`: InputStream,
+        out: OutputStream,
         validate: Boolean,
         setDebugger: ((JrpcDebugger) -> Unit)? = null,
         setGson: ((Gson) -> Unit)? = null,
@@ -55,13 +56,16 @@ object LSPLauncherEx {
     }
 
     private fun configureGson(gson: GsonBuilder) {
-        gson.registerTypeAdapter(ServerCapabilities::class.java, object : InstanceCreator<ServerCapabilities> {
-            override fun createInstance(t: Type?): ServerCapabilities {
-                // This does nothing, but if we were to return a subtype here,
-                // that's how we could add more fields to existing types (probably)
-                return ServerCapabilities()
+        gson.registerTypeAdapter(
+            ServerCapabilities::class.java,
+            object : InstanceCreator<ServerCapabilities> {
+                override fun createInstance(t: Type?): ServerCapabilities {
+                    // This does nothing, but if we were to return a subtype here,
+                    // that's how we could add more fields to existing types (probably)
+                    return ServerCapabilities()
+                }
             }
-        })
+        )
     }
 
     private class BuilderEx<T>(
@@ -88,5 +92,4 @@ object LSPLauncherEx {
             return super.wrapMessageConsumer(debugger?.let { DebugMessageConsumer(it, consumer, direction) } ?: consumer)
         }
     }
-
 }

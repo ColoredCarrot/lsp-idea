@@ -38,10 +38,12 @@ class LspEnterHandler : EnterHandlerDelegateAdapter() {
             return EnterHandlerDelegate.Result.Continue
         }
 
-        val edits = session.server.experimentalService.onEnter(TextDocumentPositionParams(
-            vfile.identifyForLsp(),
-            editor.caretLspPosition
-        ))
+        val edits = session.server.experimentalService.onEnter(
+            TextDocumentPositionParams(
+                vfile.identifyForLsp(),
+                editor.caretLspPosition
+            )
+        )
             .joinLsp(session.project, "Could not handle onEnter")
             .nullize()
             ?: return EnterHandlerDelegate.Result.Continue
@@ -60,5 +62,4 @@ class LspEnterHandler : EnterHandlerDelegateAdapter() {
         val exp = caps.experimental as? JsonObject ?: return false
         return (exp["onEnter"] as? JsonPrimitive)?.asBoolean == true
     }
-
 }

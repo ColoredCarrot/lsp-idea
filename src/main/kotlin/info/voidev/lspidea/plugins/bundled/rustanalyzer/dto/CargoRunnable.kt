@@ -26,5 +26,4 @@ open class CargoRunnable {
     lateinit var executableArgs: MutableList<String>
 
     var expectTest: Boolean? = null
-
 }

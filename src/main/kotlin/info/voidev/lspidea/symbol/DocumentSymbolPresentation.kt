@@ -16,11 +16,10 @@ class DocumentSymbolPresentation(private val symbol: DocumentSymbol) : ColoredIt
         style = if (isDeprecated) CodeInsightColors.DEPRECATED_ATTRIBUTES else null
     }
 
-    //TODO also display symbol.detail
+    // TODO also display symbol.detail
     override fun getPresentableText(): String = symbol.name
 
     override fun getIcon(unused: Boolean) = symbol.kind.icon
 
     override fun getTextAttributesKey() = style
-
 }

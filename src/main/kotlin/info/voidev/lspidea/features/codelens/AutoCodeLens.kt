@@ -33,5 +33,4 @@ class AutoCodeLens(codeLens: CodeLens, private val session: LspSession) {
     fun get() = codeLens
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>) = codeLens
-
 }

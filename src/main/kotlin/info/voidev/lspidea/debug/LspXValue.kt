@@ -23,13 +23,9 @@ abstract class XValueBase : XValue() {
 
     // true by default; we don't support any navigation
     override fun canNavigateToSource() = false
-
 }
 
-sealed class LspXValue(protected val type: Type) : XValue() {
-
-
-}
+sealed class LspXValue(protected val type: Type) : XValue()
 
 inline fun makeXValuePresentation(typeString: String? = null, renderFn: (renderer: XValueTextRenderer) -> Unit) =
     object : XValuePresentationBase() {
@@ -38,7 +34,6 @@ inline fun makeXValuePresentation(typeString: String? = null, renderFn: (rendere
 
         override fun renderValue(renderer: XValueTextRenderer) {
         }
-
     }
 
 abstract class XValuePresentationBase : XValuePresentation() {
@@ -54,7 +49,6 @@ class LspXValuePresentation(type: Type, private val value: Any?) : XValuePresent
     }
 
     override fun getType() = typeString
-
 }
 
 class LspCollectionXValuePresentation(itemType: Type, private val value: Collection<*>) : XValuePresentation() {

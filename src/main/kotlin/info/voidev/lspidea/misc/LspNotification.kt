@@ -10,5 +10,4 @@ object LspNotification {
 
     fun requestGroup(): NotificationGroup =
         NotificationGroupManager.getInstance().getNotificationGroup("Language Server Request")
-
 }

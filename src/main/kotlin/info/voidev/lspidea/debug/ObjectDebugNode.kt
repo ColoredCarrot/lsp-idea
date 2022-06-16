@@ -65,6 +65,5 @@ class ObjectDebugNode(private val type: Type, private val value: Any?) : XValue(
         override fun renderValue(renderer: XValueTextRenderer) {
             LspDebugValueRendererOutputImpl(renderer).append(value)
         }
-
     }
 }

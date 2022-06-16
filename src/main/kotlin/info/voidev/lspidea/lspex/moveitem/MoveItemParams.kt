@@ -17,5 +17,4 @@ open class MoveItemParams constructor() {
         this.range = range
         this.direction = direction
     }
-
 }

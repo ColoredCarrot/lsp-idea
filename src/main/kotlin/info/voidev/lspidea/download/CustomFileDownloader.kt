@@ -140,8 +140,10 @@ class CustomFileDownloader(
                 } catch (exception: IOException) {
                     val tryAgain = IOExceptionDialog.showErrorDialog(myDialogTitle, exception.message)
                     if (tryAgain) {
-                        downloadWithBackgroundProcess(targetDir,
-                            project).thenAccept { pairs: List<Pair<VirtualFile, DownloadableFileDescription>>? ->
+                        downloadWithBackgroundProcess(
+                            targetDir,
+                            project
+                        ).thenAccept { pairs: List<Pair<VirtualFile, DownloadableFileDescription>>? ->
                             result.complete(pairs)
                         }
                     }
@@ -191,14 +193,20 @@ class CustomFileDownloader(
                     )
                 }
                 if (FileUtil.filesEqual(downloaded, existing)) {
-                    existingFiles.add(Pair.create(
-                        existing,
-                        description))
+                    existingFiles.add(
+                        Pair.create(
+                            existing,
+                            description
+                        )
+                    )
                 } else {
                     totalSize.addAndGet(downloaded.length())
-                    downloadedFiles.add(Pair.create(
-                        downloaded,
-                        description))
+                    downloadedFiles.add(
+                        Pair.create(
+                            downloaded,
+                            description
+                        )
+                    )
                 }
             }
 
@@ -218,15 +226,17 @@ class CustomFileDownloader(
 
             val tookMs = System.currentTimeMillis() - start
 
-            LOG.debug(buildString {
-                append("Downloaded ")
-                append(StringUtil.formatFileSize(totalSize.get()))
-                append(" in ")
-                append(StringUtil.formatDuration(tookMs))
-                append(" (")
-                append(tookMs)
-                append("ms)")
-            })
+            LOG.debug(
+                buildString {
+                    append("Downloaded ")
+                    append(StringUtil.formatFileSize(totalSize.get()))
+                    append(" in ")
+                    append(StringUtil.formatDuration(tookMs))
+                    append(" (")
+                    append(tookMs)
+                    append("ms)")
+                }
+            )
 
             val localFiles: MutableList<Pair<File, DownloadableFileDescription>> = ArrayList()
             localFiles.addAll(moveToDir(downloadedFiles, targetDir))
@@ -267,8 +277,10 @@ class CustomFileDownloader(
             for (pair in downloadedFiles) {
                 val description = pair.getSecond()
                 val fileName = description.generateFileName { s: String? ->
-                    !File(targetDir,
-                        s).exists()
+                    !File(
+                        targetDir,
+                        s
+                    ).exists()
                 }
                 val toFile = File(targetDir, fileName)
                 FileUtil.rename(pair.getFirst(), toFile)
@@ -318,21 +330,23 @@ class CustomFileDownloader(
                 .request(description.downloadUrl)
                 .accept("application/octet-stream")
                 .redirectLimit(redirectLimit)
-                .connect(RequestProcessor { request ->
-                    // Don't download if it appears we already have the file
-                    val size = request.connection.contentLength
-                    if (existingFile.exists() && size.toLong() == existingFile.length()) {
-                        return@RequestProcessor existingFile
+                .connect(
+                    RequestProcessor { request ->
+                        // Don't download if it appears we already have the file
+                        val size = request.connection.contentLength
+                        if (existingFile.exists() && size.toLong() == existingFile.length()) {
+                            return@RequestProcessor existingFile
+                        }
+
+                        indicator.text = IdeCoreBundle.message(
+                            "progress.download.file.text",
+                            description.presentableFileName,
+                            presentableUrl
+                        )
+
+                        request.saveToFile(FileUtil.createTempFile("download.", ".tmp"), indicator)
                     }
-
-                    indicator.text = IdeCoreBundle.message(
-                        "progress.download.file.text",
-                        description.presentableFileName,
-                        presentableUrl
-                    )
-
-                    request.saveToFile(FileUtil.createTempFile("download.", ".tmp"), indicator)
-                })
+                )
         }
     }
 }

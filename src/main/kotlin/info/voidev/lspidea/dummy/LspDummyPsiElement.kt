@@ -11,5 +11,4 @@ class LspDummyPsiElement(node: ASTNode) : ASTWrapperPsiElement(node), PsiExterna
     override fun getReferences(): Array<PsiReference> {
         return ReferenceProvidersRegistry.getReferencesFromProviders(this)
     }
-
 }
