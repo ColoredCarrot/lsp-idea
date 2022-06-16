@@ -1,0 +1,19 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="IncorrectHttpHeaderInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="customHeaders">
+        <set>
+          <option value="X-AliBroker" />
+          <option value="X-ServiceName" />
+          <option value="X-InstanceName" />
+          <option value="X-MajorVersion" />
+          <option value="X-ClusterName" />
+          <option value="X-Endpoint-UUID" />
+          <option value="X-Endpoint-Ip" />
+        </set>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="RedundantNullableReturnType" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  </profile>
+</component>

@@ -1,0 +1,188 @@
+<idea-plugin>
+    <id>info.voidev.lspidea</id>
+    <name>LSP-IDEA</name>
+    <vendor email="contact.coloredcarrot@gmail.com" url="https://voidev.info">Voidev</vendor>
+
+    <description><![CDATA[
+    Language Server Protocol support for IntelliJ-based IDEs
+    ]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.intellij.plugins.markdown</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup displayType="BALLOON" id="Language Server"/>
+        <notificationGroup displayType="STICKY_BALLOON" id="Language Server Request"/>
+        <projectService serviceImplementation="info.voidev.lspidea.LspIdeaOptions"/>
+        <projectService serviceInterface="info.voidev.lspidea.def.LspServerDispatch"
+                        serviceImplementation="info.voidev.lspidea.def.LspServerDispatchImpl"
+                        testServiceImplementation="info.voidev.lspidea.def.TestLspServerDefinitionRegistry"/>
+        <projectService serviceImplementation="info.voidev.lspidea.LspSessionManager"/>
+        <projectService serviceImplementation="info.voidev.lspidea.diagnostics.LspDiagnosticsManager"/>
+
+        <lang.substitutor language="" implementationClass="info.voidev.lspidea.misc.LspLanguageSubstitutor"/>
+        <fileType name="LspFileType" language="LspFakeLanguage"
+                  implementationClass="info.voidev.lspidea.misc.LspFileType"/>
+        <lang.parserDefinition language="LspFakeLanguage"
+                               implementationClass="info.voidev.lspidea.dummy.LspDummyParserDefinition"/>
+
+        <fileDocumentManagerListener implementation="info.voidev.lspidea.files.LspFileDocumentManagerListener"/>
+
+        <editorFactoryListener implementation="info.voidev.lspidea.files.LspEditorFactoryListener"/>
+
+        <completion.contributor language="LspFakeLanguage"
+                                implementationClass="info.voidev.lspidea.features.completion.LspCompletionContributor"/>
+        <documentationProvider
+                implementation="info.voidev.lspidea.features.documentation.LspLookupElementDocumentationProvider"/>
+        <documentationProvider implementation="info.voidev.lspidea.features.documentation.LspDocumentationProvider"/>
+        <postFormatProcessor implementation="info.voidev.lspidea.listeners.LspPostFormatProcessor"/>
+        <lang.importOptimizer language="LspFakeLanguage"
+                              implementationClass="info.voidev.lspidea.listeners.LspImportOptimizer"/>
+        <gotoClassContributor implementation="info.voidev.lspidea.features.gotosymbol.LspGoToClassContributor"/>
+        <gotoSymbolContributor implementation="info.voidev.lspidea.features.gotosymbol.LspGoToSymbolContributor"/>
+        <gotoFileContributor implementation="info.voidev.lspidea.features.gotosymbol.LspGoToFileContributor"/>
+        <codeInsight.parameterInfo language="LspFakeLanguage"
+                                   implementationClass="info.voidev.lspidea.features.paraminfo.LspParameterInfoHandler"/>
+        <codeInsight.lineMarkerProvider language="LspFakeLanguage"
+                                        implementationClass="info.voidev.lspidea.features.codelens.LspCodeLensLineMarkerProvider"/>
+        <renameHandler implementation="info.voidev.lspidea.features.rename.LspRenameHandler"/>
+
+        <externalAnnotator language="LspFakeLanguage"
+                           implementationClass="info.voidev.lspidea.features.highlight.LspHighlightingAnnotator"/>
+
+        <externalAnnotator language="LspFakeLanguage"
+                           implementationClass="info.voidev.lspidea.diagnostics.LspDiagnosticsAnnotator"/>
+
+        <highlightingPassFactory
+                implementation="info.voidev.lspidea.features.codeaction.LspCodeActionsHighlightingPassFactory"/>
+
+        <lang.foldingBuilder language="LspFakeLanguage"
+                             implementationClass="info.voidev.lspidea.features.folding.LspFoldingBuilder"/>
+
+        <lang.psiStructureViewFactory language="LspFakeLanguage"
+                                      implementationClass="info.voidev.lspidea.features.structureview.LspStructureViewFactory"/>
+
+        <lang.smartEnterProcessor language="LspFakeLanguage"
+                                  implementationClass="info.voidev.lspidea.features.smartenter.LspSmartEnterProcessor"/>
+
+        <gotoDeclarationHandler implementation="info.voidev.lspidea.features.declaration.LspGotoDeclarationHandler"/>
+
+        <extendWordSelectionHandler implementation="info.voidev.lspidea.features.select.LspExtendWordSelectionHandler"/>
+
+        <codeInsight.inlayProvider language="LspFakeLanguage"
+                                   implementationClass="info.voidev.lspidea.features.inlay.LspInlayProvider"/>
+
+        <lang.refactoringSupport language="LspFakeLanguage"
+                                 implementationClass="info.voidev.lspidea.features.refactor.LspRefactoringSupportProvider"/>
+
+        <inlineActionHandler implementation="info.voidev.lspidea.features.inline.LspInlineActionHandler"/>
+
+        <statementUpDownMover implementation="info.voidev.lspidea.features.moveitem.LspStatementUpDownMover"/>
+
+        <joinLinesHandler implementation="info.voidev.lspidea.features.joinlines.LspJoinLinesHandler"/>
+
+        <highlightUsagesHandlerFactory
+                implementation="info.voidev.lspidea.features.semanticref.LspHighlightUsagesHandlerFactory"/>
+
+        <typedHandler implementation="info.voidev.lspidea.features.formatting.LspOnTypeFormatting"/>
+
+        <enterHandlerDelegate implementation="info.voidev.lspidea.features.enter.LspEnterHandler"/>
+
+        <toolWindow factoryClass="info.voidev.lspidea.toolwindow.LspToolWindowFactory"
+                    id="Language Server"
+                    anchor="bottom"
+                    icon="AllIcons.Toolwindows.ToolWindowJsonPath"/>
+        <toolWindow factoryClass="info.voidev.lspidea.features.highlight.ui.LspSemanticTokensToolWindowFactory"
+                    id="Semantic Tokens (LSP)"
+                    anchor="right"
+                    icon="AllIcons.Actions.Highlighting"/>
+
+        <projectConfigurable instance="info.voidev.lspidea.config.LspIdeaConfigConfigurable" displayName="LSP-IDEA"/>
+        <applicationConfigurable instance="info.voidev.lspidea.config.servers.LspServersConfigurable"
+                                 displayName="Language Servers"/>
+    </extensions>
+
+    <actions>
+        <group id="lspidea.ActionGroup" text="LSP Client">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </group>
+
+        <action id="lspidea.actions.LspRestartAllSessionsAction"
+                class="info.voidev.lspidea.actions.LspRestartAllSessionsAction"
+                text="Restart All Sessions"
+                description="Starts the language server">
+            <add-to-group group-id="lspidea.ActionGroup" anchor="last"/>
+        </action>
+
+        <action id="info.voidev.lspidea.features.references.LspReferencesAction"
+                class="info.voidev.lspidea.features.references.LspReferencesAction"
+                text="Find References"
+                description="Finds references to the selected symbol"
+                use-shortcut-of="ShowUsages">
+            <add-to-group group-id="FindUsagesMenuGroup" anchor="after" relative-to-action="ShowUsages"/>
+        </action>
+    </actions>
+
+    <projectListeners>
+        <listener class="info.voidev.lspidea.toolwindow.LspToolWindowSessionListener"
+                  topic="info.voidev.lspidea.event.LspSessionListener"/>
+        <listener class="info.voidev.lspidea.files.NewLspSessionDocumentOpener"
+                  topic="info.voidev.lspidea.event.LspSessionListener"/>
+        <listener class="info.voidev.lspidea.files.LspVirtualFileListenerRegistrar"
+                  topic="info.voidev.lspidea.event.LspSessionListener"/>
+        <listener class="info.voidev.lspidea.misc.RehighlightFilesLspSessionListener"
+                  topic="info.voidev.lspidea.event.LspSessionListener"/>
+    </projectListeners>
+
+    <extensionPoints>
+        <extensionPoint name="commandExecutor"
+                        interface="info.voidev.lspidea.command.clientside.LspCommandExecutor"
+                        dynamic="true"/>
+
+        <extensionPoint name="debugRendererProvider"
+                        interface="info.voidev.lspidea.debug.LspDebugRendererProvider"
+                        dynamic="true"/>
+
+        <extensionPoint name="feature"
+                        beanClass="info.voidev.lspidea.featurelist.LspFeatureEP"
+                        dynamic="false">
+            <with attribute="instance" implements="info.voidev.lspidea.featurelist.LspFeature"/>
+        </extensionPoint>
+
+        <extensionPoint name="serverSupport"
+                        interface="info.voidev.lspidea.def.LspServerSupport"
+                        dynamic="false"/>
+
+        <extensionPoint name="serverHandlerType"
+                        interface="info.voidev.lspidea.config.serverhandler.LspRunnerType"
+                        dynamic="false"/>
+    </extensionPoints>
+
+    <extensions defaultExtensionNs="info.voidev.lspidea">
+        <commandExecutor implementation="info.voidev.lspidea.command.clientside.std.LspStandardCommandExecutor"/>
+
+        <debugRendererProvider
+                implementation="info.voidev.lspidea.debug.PrimitiveDebugRendererProvider"/>
+        <debugRendererProvider
+                implementation="info.voidev.lspidea.debug.StandardLspDebugRendererProvider"/>
+
+        <feature instance="info.voidev.lspidea.features.codelens.CodeLensLspFeature"/>
+
+        <serverSupport implementation="info.voidev.lspidea.plugins.bundled.generic.GenericLspServerSupport"/>
+
+        <serverHandlerType
+                implementation="info.voidev.lspidea.config.serverhandler.LocalProcessLspRunnerType"/>
+
+
+        <!-- =======================
+             #    rust-analyzer    #
+             ======================= -->
+
+        <commandExecutor
+                implementation="info.voidev.lspidea.plugins.bundled.rustanalyzer.RustAnalyzerCommandExecutor"/>
+
+        <serverSupport implementation="info.voidev.lspidea.plugins.bundled.rustanalyzer.RustAnalyzerSupport"/>
+    </extensions>
+</idea-plugin>

@@ -1,0 +1,3 @@
+package info.voidev.lspidea.config.servers
+
+interface LspServerOptionsConfigStateInterface
