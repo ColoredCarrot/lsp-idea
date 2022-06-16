@@ -18,7 +18,7 @@
         <projectService serviceImplementation="info.voidev.lspidea.LspIdeaOptions"/>
         <projectService serviceInterface="info.voidev.lspidea.def.LspServerDispatch"
                         serviceImplementation="info.voidev.lspidea.def.LspServerDispatchImpl"
-                        testServiceImplementation="info.voidev.lspidea.def.TestLspServerDefinitionRegistry"/>
+                        testServiceImplementation="info.voidev.lspidea.def.TestLspServerDispatch"/>
         <projectService serviceImplementation="info.voidev.lspidea.LspSessionManager"/>
         <projectService serviceImplementation="info.voidev.lspidea.diagnostics.LspDiagnosticsManager"/>
 
