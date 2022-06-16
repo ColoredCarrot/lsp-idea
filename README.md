@@ -8,7 +8,7 @@ A Language Server Protocol client implementation for JetBrains IDEs.
 Some language servers require or benefit from special support by clients.
 LSP-IDEA comes bundled with extensive rust-analyzer integration
 and makes it easy for developers to implement new integrations
-on top of the existing infrastructure (see extension points).
+on top of the existing infrastructure (via extension points).
 
 ### rust-analyzer
 
@@ -19,30 +19,30 @@ on top of the existing infrastructure (see extension points).
 
 ### other
 
-- Use any executable
+- Any executable that supports stdin/stdout communication can be used as a language server
 
 
 ## Supported Features
 
-- Semantic Tokens-based syntax highlighting
-- Code Lenses
-- Go to definition/declaration
+- Syntax highlighting based on Semantic Tokens
 - Code completion
-- Formatting
+- Go to definition/declaration
+- Go to class/go to symbol
+- Reformat file
 - Find references
-- Highlight usages
 - Rename
 - Extract variable/constant/function
 - Expand/contract selection ((Shift+)Ctrl+W)
 - Structure View (Ctrl+F12)
-- Go to class/go to symbol
+- Code Lenses
+- Highlight usages
 - Code Folding
 - Diagnostics
-- Quickfixes
-- Progress reporting
+- Quickfixes, code actions
 - Move Item up/down
-- On Enter
 - Join Lines
+- On Enter
+- Progress reporting
 
 
 ## Debugger
@@ -50,6 +50,6 @@ on top of the existing infrastructure (see extension points).
 One of LSP-IDEA's design goals is debuggability.
 To that end,
 it features multiple tool windows for inspecting
-- JSON-RPC messages, including contents and stacktraces;
+- JSON-RPC messages, including their contents and stacktraces;
 - the language server's stderr;
 - semantic tokens as decoded by LSP-IDEA, including highlighting selected tokens.
