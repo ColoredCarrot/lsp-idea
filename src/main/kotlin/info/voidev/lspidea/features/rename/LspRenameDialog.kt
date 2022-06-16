@@ -31,16 +31,15 @@ class LspRenameDialog(
 ) : RefactoringDialog(project, true) {
 
     private lateinit var myNameLabel: JLabel
-    private lateinit var myNameSuggestionsField: NameSuggestionsField
+
+    private val myNameSuggestionsField: NameSuggestionsField =
+        object : NameSuggestionsField(arrayOf(), myProject, FileTypes.PLAIN_TEXT, editor) {
+            override fun shouldSelectAll(): Boolean {
+                return editor == null || editor.settings.isPreselectRename
+            }
+        }
 
     init {
-        myNameSuggestionsField =
-            object : NameSuggestionsField(arrayOf(), myProject, FileTypes.PLAIN_TEXT, editor) {
-                override fun shouldSelectAll(): Boolean {
-                    return editor == null || editor.settings.isPreselectRename
-                }
-            }
-
         init()
 
         myNameLabel.text = XmlStringUtil.wrapInHtml(XmlStringUtil.escapeString("Rename symbol", false))

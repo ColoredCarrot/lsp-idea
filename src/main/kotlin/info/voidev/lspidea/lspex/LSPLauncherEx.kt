@@ -30,7 +30,6 @@ object LSPLauncherEx {
      * @param in input stream to listen for incoming messages
      * @param out output stream to send outgoing messages
      * @param validate whether messages should be validated with the [ReflectiveMessageValidator]
-     * @param trace a writer to which incoming and outgoing messages are traced, or `null` to disable tracing
      *
      * @see LSPLauncher.createClientLauncher
      */

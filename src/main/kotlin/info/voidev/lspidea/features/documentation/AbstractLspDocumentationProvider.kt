@@ -9,8 +9,6 @@ import org.eclipse.lsp4j.MarkedString
 import org.eclipse.lsp4j.MarkupContent
 import org.eclipse.lsp4j.MarkupKind
 import org.eclipse.lsp4j.jsonrpc.messages.Either
-import org.intellij.markdown.html.HtmlGenerator
-import org.intellij.markdown.parser.MarkdownParser
 
 abstract class AbstractLspDocumentationProvider : AbstractDocumentationProvider() {
 
@@ -51,13 +49,6 @@ abstract class AbstractLspDocumentationProvider : AbstractDocumentationProvider(
         }
 
         return html
-    }
-
-    private fun markdown2htmlLegacy(markdown: String): String {
-        // TODO: Links don't seem to be translated properly. Check MarkdownUtil.generateMarkdownHtml()
-        // TODO: Relatedly, implement info.voidev.lspidea.features.documentation.LspDocumentationProvider.getDocumentationElementForLink
-        val parsedTree = MarkdownParser(LspMarkdownFlavor).buildMarkdownTreeFromString(markdown)
-        return HtmlGenerator(markdown, parsedTree, LspMarkdownFlavor, true).generateHtml()
     }
 
     companion object {

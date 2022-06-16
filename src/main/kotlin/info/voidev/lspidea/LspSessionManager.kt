@@ -11,7 +11,6 @@ import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ex.ProjectManagerEx
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.psi.PsiFile
 import com.intellij.util.concurrency.AppExecutorUtil
 import com.intellij.vcs.log.submitSafe
 import info.voidev.lspidea.config.InstantiableLspServer
@@ -62,10 +61,6 @@ class LspSessionManager(private val project: Project) : Disposable {
         } else {
             null
         }
-    }
-
-    fun getForPsiFile(psi: PsiFile?): LspSession? {
-        return getForFile(psi?.virtualFile)
     }
 
     fun getAll(): Collection<LspSession> = lock.read { sessions.values.toList() }

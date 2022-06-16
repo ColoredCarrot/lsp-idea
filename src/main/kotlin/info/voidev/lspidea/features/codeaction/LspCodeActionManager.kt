@@ -9,7 +9,7 @@ import info.voidev.lspidea.util.identifyForLsp
 import org.eclipse.lsp4j.CodeAction
 import java.util.concurrent.ConcurrentHashMap
 
-class LspCodeActionManager(private val session: LspSession) : Disposable {
+class LspCodeActionManager(session: LspSession) : Disposable {
 
     // TODO: This might be a possible memory leak
     //  if the user just opens more and more documents

@@ -1,6 +1,5 @@
 package info.voidev.lspidea.config.servers
 
-import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.extensions.BaseExtensionPointName
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.util.Disposer
@@ -98,9 +97,5 @@ class LspServersConfigurable : Configurable, Configurable.WithEpDependencies {
             Disposer.dispose(it)
             view = null
         }
-    }
-
-    companion object {
-        private val logger = logger<LspServersConfigurable>()
     }
 }

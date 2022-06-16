@@ -46,7 +46,7 @@ open class ProjectForTesting : UserDataHolderBase(), Project {
         return null
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java", ReplaceWith("null"))
     override fun getBaseDir(): VirtualFile? {
         return null
     }

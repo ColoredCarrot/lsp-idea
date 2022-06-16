@@ -12,14 +12,10 @@ import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.editor.Editor
-import com.intellij.openapi.editor.ex.util.EditorUtil
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.ui.GenericListComponentUpdater
-import com.intellij.openapi.ui.popup.JBPopup
-import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.pom.Navigatable
 import com.intellij.ui.list.buildTargetPopup
-import com.intellij.usages.UsageViewPresentation
 import com.intellij.util.concurrency.AppExecutorUtil
 import info.voidev.lspidea.LspIdea
 import info.voidev.lspidea.LspSessionManager
@@ -128,22 +124,5 @@ class LspReferencesAction : AnAction(), DumbAware {
             // We're fine just casting to our use case.
             builder.backgroundUpdater as GenericListComponentUpdater<LocationWrapper>
         )
-    }
-
-    private fun buildPopupOLD(refs: List<LocationWrapper>): JBPopup {
-        val presentation = UsageViewPresentation() // TODO
-
-        return JBPopupFactory.getInstance()
-            .createPopupChooserBuilder(refs)
-            .setTitle("Usages")
-            .setRenderer { list, value, index, isSelected, cellHasFocus ->
-                TODO("show syntax-highlighted line of code")
-            }
-            .setFont(EditorUtil.getEditorFont())
-            .withHintUpdateSupply()
-//            .backgroundUpdater.
-            .setNamerForFiltering { ref -> ref.textForFiltering }
-            .setItemChosenCallback { it.navigate(true) }
-            .createPopup()
     }
 }

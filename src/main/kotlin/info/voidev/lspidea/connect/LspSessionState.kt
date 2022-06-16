@@ -5,7 +5,6 @@ import info.voidev.lspidea.IdeaLanguageClient
 import info.voidev.lspidea.def.ConfiguredLspServer
 import info.voidev.lspidea.lspex.LanguageServerEx
 import info.voidev.lspidea.lspex.debug.JrpcDebugger
-import info.voidev.lspidea.util.WriterWrapper
 import org.eclipse.lsp4j.ServerCapabilities
 import org.eclipse.lsp4j.ServerInfo
 
@@ -30,9 +29,6 @@ class LspSessionState internal constructor(
     var serverCapabilitiesOrNull: ServerCapabilities? = null
 
     lateinit var debugger: JrpcDebugger
-
-    // TODO remove
-    val ioLog = WriterWrapper()
 
     val server: LanguageServerEx
         get() = serverOrNull!!
