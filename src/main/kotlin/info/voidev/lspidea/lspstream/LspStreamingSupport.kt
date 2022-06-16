@@ -8,9 +8,9 @@ import java.util.concurrent.ConcurrentHashMap
 
 class LspStreamingSupport(private val session: LspSession) : Disposable {
 
-    /////////////////////
+    // ===================
     // TODO: Find a LS that actually streams some results
-    /////////////////////
+    // ===================
 
     private val consumers = ConcurrentHashMap<String, (Any) -> Unit>()
 

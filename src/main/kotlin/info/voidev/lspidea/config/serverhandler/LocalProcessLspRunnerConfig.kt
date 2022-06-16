@@ -95,18 +95,21 @@ class LocalProcessLspRunnerConfig(private val origin: LspServerSupport<*>) : Con
     private fun downloadExecutable() {
         origin.installer
             ?.download(downloadButton)
-            ?.thenAcceptAsync({ path ->
-                executablePathValue = path.toString()
-            }, CompletableFutureUtil.getEDTExecutor())
+            ?.thenAcceptAsync(
+                { path -> executablePathValue = path.toString() },
+                CompletableFutureUtil.getEDTExecutor()
+            )
     }
 
     private fun testExecutable() {
         val configState = apply()
 
         if (!File(configState.executablePath).canExecute()) {
-            Messages.showErrorDialog(mainComponent,
+            Messages.showErrorDialog(
+                mainComponent,
                 "File does not exist or is not executable: ${configState.executablePath}",
-                "Missing Language Server")
+                "Missing Language Server"
+            )
             return
         }
 
@@ -129,7 +132,7 @@ class LocalProcessLspRunnerConfig(private val origin: LspServerSupport<*>) : Con
         val tempDir = FileUtil.createTempDirectory("langserver-test-dir.", null)
 
         val processHandler = LspLocalServerProcessHandler(
-           ProcessBuilder(File(executablePathValue).absolutePath).directory(tempDir)
+            ProcessBuilder(File(executablePathValue).absolutePath).directory(tempDir)
         )
 
         val result = LspServerValidator.validate(server, processHandler, progress)
@@ -152,5 +155,4 @@ class LocalProcessLspRunnerConfig(private val origin: LspServerSupport<*>) : Con
             }
         }
     }
-
 }

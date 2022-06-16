@@ -49,6 +49,10 @@ test {
 ktlint {
     outputToConsole = true
     filter {
-        exclude('**/test/kotlin/**')
+        // exclude receives relative paths, meaning they don't contain '/test/'
+        // see e.g. https://github.com/JLLeitschuh/ktlint-gradle/issues/222
+
+        // Exclude test folder because formatting in tests is usually finicky
+        exclude { projectDir.toURI().relativize(it.file.toURI()).path.contains('/test/') }
     }
 }
