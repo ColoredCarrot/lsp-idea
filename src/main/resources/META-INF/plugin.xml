@@ -1,10 +1,10 @@
 <idea-plugin>
     <id>info.voidev.lspidea</id>
     <name>LSP-IDEA</name>
-    <vendor email="contact.coloredcarrot@gmail.com" url="https://voidev.info">Voidev</vendor>
+    <vendor email="contact.coloredcarrot@gmail.com">Voidev</vendor>
 
     <description><![CDATA[
-    Language Server Protocol support for IntelliJ-based IDEs
+    Language Server Protocol client implementation for JetBrains IDEs.
     ]]></description>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
