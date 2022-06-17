@@ -1,85 +1,89 @@
 package info.voidev.lspidea.edit
 
+import com.intellij.openapi.editor.Document
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import info.voidev.lspidea.editor.ResolvedTextEdit
 import info.voidev.lspidea.editor.applyEdits
-import info.voidev.lspidea.misc.LspFileType
 import org.eclipse.lsp4j.Position
 import org.eclipse.lsp4j.Range
 import org.eclipse.lsp4j.TextEdit
-import org.junit.Ignore
+import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
-@RunWith(JUnit4::class)
-@Ignore // ignore all these tests as they are not supported by CI. TODO Fix that
-class DocumentEditorTest : BasePlatformTestCase() {
+internal class SimpleDocumentEditorTest {
 
-    override fun getTestDataPath() = "src/test/testdata"
+    private lateinit var document: Document
 
-    override fun isWriteActionRequired() = true
+    @Before
+    fun setUp() {
+        document = BetterMockDocument()
+        document.setText(SRC)
+    }
 
     @Test
     fun `simple insert`() {
-        myFixture.configureByText(LspFileType, SRC)
-        ResolvedTextEdit("foo", 0, 0).applyTo(myFixture.editor.document)
+        ResolvedTextEdit("foo", 0, 0).applyTo(document)
     }
 
     @Test
     fun `simple delete`() {
-        myFixture.configureByText(LspFileType, SRC)
-        ResolvedTextEdit("", 1, 3).applyTo(myFixture.editor.document)
-        assertSameLines("""
+        ResolvedTextEdit("", 1, 3).applyTo(document)
+        BasePlatformTestCase.assertSameLines(
+            """
             a def
             ABC DEF
-        """.trimIndent(), myFixture.editor.document.text)
+        """.trimIndent(), document.text
+        )
     }
 
     @Test
     fun `simple replace`() {
-        myFixture.configureByText(LspFileType, SRC)
-        ResolvedTextEdit("xx", 1, 3).applyTo(myFixture.editor.document)
-        assertSameLines("""
+        ResolvedTextEdit("xx", 1, 3).applyTo(document)
+        BasePlatformTestCase.assertSameLines(
+            """
             axx def
             ABC DEF
-        """.trimIndent(), myFixture.editor.document.text)
+        """.trimIndent(), document.text
+        )
     }
 
     @Test
     fun `replace with longer`() {
-        myFixture.configureByText(LspFileType, SRC)
-        ResolvedTextEdit("xxyy", 1, 3).applyTo(myFixture.editor.document)
-        assertSameLines("""
+        ResolvedTextEdit("xxyy", 1, 3).applyTo(document)
+        BasePlatformTestCase.assertSameLines(
+            """
             axxyy def
             ABC DEF
-        """.trimIndent(), myFixture.editor.document.text)
+        """.trimIndent(), document.text
+        )
     }
 
     @Test
     fun `multiple replace`() {
-        myFixture.configureByText(LspFileType, SRC)
-        myFixture.editor.document.applyEdits(listOf(
+        document.applyEdits(listOf(
             TextEdit(Range(Position(0, 5), Position(0, 6)), "56"),
             TextEdit(Range(Position(0, 1), Position(0, 3)), "1234"),
         ))
-        assertSameLines("""
+        BasePlatformTestCase.assertSameLines(
+            """
             a1234 d56f
             ABC DEF
-        """.trimIndent(), myFixture.editor.document.text)
+        """.trimIndent(), document.text
+        )
     }
 
     @Test
     fun `multiple replace (consecutive)`() {
-        myFixture.configureByText(LspFileType, SRC)
-        myFixture.editor.document.applyEdits(listOf(
+        document.applyEdits(listOf(
             TextEdit(Range(Position(0, 3), Position(0, 7)), "56"),
             TextEdit(Range(Position(0, 1), Position(0, 3)), "1234"),
         ))
-        assertSameLines("""
+        BasePlatformTestCase.assertSameLines(
+            """
             a123456
             ABC DEF
-        """.trimIndent(), myFixture.editor.document.text)
+        """.trimIndent(), document.text
+        )
     }
 
     @Test
@@ -88,16 +92,18 @@ class DocumentEditorTest : BasePlatformTestCase() {
         // > If multiple inserts have the same position,
         // > the order in the array defines the order in which
         // > the inserted strings appear in the resulting text.
-        myFixture.configureByText(LspFileType, """
+        document.setText("""
             abc
         """.trimIndent())
-        myFixture.editor.document.applyEdits(listOf(
+        document.applyEdits(listOf(
             TextEdit(Range(Position(0, 2), Position(0, 2)), "1"),
             TextEdit(Range(Position(0, 2), Position(0, 2)), "2"),
         ))
-        assertSameLines("""
+        BasePlatformTestCase.assertSameLines(
+            """
             ab12c
-        """.trimIndent(), myFixture.editor.document.text)
+        """.trimIndent(), document.text
+        )
     }
 
     companion object {
