@@ -7,5 +7,5 @@ object SessionDebugOptions {
     val DOCS_RAW_MARKDOWN = Key.create<Boolean>("rawMarkdown")
 
     @JvmStatic
-    val DOCS_RAW_HTML = Key.create<Boolean>("rawMarkdown")
+    val DOCS_RAW_HTML = Key.create<Boolean>("rawHtml")
 }
