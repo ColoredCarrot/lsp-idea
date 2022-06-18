@@ -1,6 +1,8 @@
 package info.voidev.lspidea.util
 
 import com.intellij.openapi.util.Disposer
+import com.intellij.openapi.util.Key
+import com.intellij.openapi.util.UserDataHolder
 import com.intellij.ui.ListSpeedSearch
 import com.intellij.ui.TextAccessor
 import com.intellij.ui.components.JBList
@@ -45,6 +47,12 @@ inline fun Cell<AbstractButton>.bindSelectedDirectly(getProp: () -> Boolean, cro
 
     return this
 }
+
+fun Cell<AbstractButton>.bindSelectedDirectlyToUserData(key: Key<Boolean>, holder: UserDataHolder, default: Boolean = false) =
+    bindSelectedDirectly(
+        getProp = { holder.getUserData(key) ?: default },
+        setProp = { holder.putUserData(key, it) },
+    )
 
 operator fun TextAccessor.getValue(thisRef: Any?, property: KProperty<*>): String = text
 

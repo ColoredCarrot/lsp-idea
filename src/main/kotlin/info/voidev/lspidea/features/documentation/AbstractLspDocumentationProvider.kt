@@ -4,6 +4,7 @@ import com.intellij.lang.documentation.AbstractDocumentationProvider
 import com.intellij.lang.documentation.DocumentationMarkup
 import info.voidev.lspidea.connect.LspSession
 import info.voidev.lspidea.features.documentation.markdownrenderer.LspMarkdownRenderer
+import info.voidev.lspidea.transientoptions.SessionDebugOptions
 import org.apache.commons.lang.StringEscapeUtils
 import org.eclipse.lsp4j.MarkedString
 import org.eclipse.lsp4j.MarkupContent
@@ -35,7 +36,7 @@ abstract class AbstractLspDocumentationProvider : AbstractDocumentationProvider(
     }
 
     private fun markdown2html(markdown: String, session: LspSession): String {
-        if (DEBUG_PRINT_RAW_MARKDOWN) {
+        if (session.getUserData(SessionDebugOptions.DOCS_RAW_MARKDOWN) == true) {
             var html = StringEscapeUtils.escapeHtml(markdown)
             html = "<strong>Note: Raw markdown is shown as a debugging feature.</strong><br/><br/>$html"
             return html
@@ -43,16 +44,11 @@ abstract class AbstractLspDocumentationProvider : AbstractDocumentationProvider(
 
         var html = LspMarkdownRenderer(session).render(markdown)
 
-        if (DEBUG_PRINT_RAW_HTML) {
+        if (session.getUserData(SessionDebugOptions.DOCS_RAW_HTML) == true) {
             html = StringEscapeUtils.escapeHtml(html)
             html = "<strong>Note: HTML is escaped as a debugging feature.</strong><br/><br/>$html"
         }
 
         return html
-    }
-
-    companion object {
-        private const val DEBUG_PRINT_RAW_MARKDOWN = false
-        private const val DEBUG_PRINT_RAW_HTML = false
     }
 }

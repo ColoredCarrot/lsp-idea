@@ -11,9 +11,11 @@ import com.intellij.ui.components.Label
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.tabs.JBTabsFactory
 import info.voidev.lspidea.connect.LspSession
+import info.voidev.lspidea.transientoptions.SessionDebugOptions
 import info.voidev.lspidea.util.IoStreamBridge
 import info.voidev.lspidea.util.addTab
 import info.voidev.lspidea.util.bindSelectedDirectly
+import info.voidev.lspidea.util.bindSelectedDirectlyToUserData
 import info.voidev.lspidea.util.enabledWithSession
 import org.apache.commons.io.output.WriterOutputStream
 import java.time.LocalTime
@@ -91,6 +93,10 @@ class LspSessionToolWindow(private val session: LspSession) : Disposable {
                         button("Fake Notification") {
                             session.server.fakeNotification(JsonObject())
                         }.enabledWithSession(session)
+                    }
+                    row("Print raw documentation:") {
+                        checkBox("Markdown").bindSelectedDirectlyToUserData(SessionDebugOptions.DOCS_RAW_MARKDOWN, session)
+                        checkBox("HTML").bindSelectedDirectlyToUserData(SessionDebugOptions.DOCS_RAW_HTML, session)
                     }
                 }
             }

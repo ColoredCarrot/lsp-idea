@@ -3,6 +3,8 @@ package info.voidev.lspidea.connect
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Disposer
+import com.intellij.openapi.util.UserDataHolderBase
+import com.intellij.openapi.util.UserDataHolderEx
 import info.voidev.lspidea.LspSessionManager
 import info.voidev.lspidea.event.LspSessionListener
 import info.voidev.lspidea.features.codeaction.LspCodeActionManager
@@ -20,7 +22,7 @@ import java.time.Instant
  * Child disposables registered with [Disposer.register]
  * are disposed just before the session begins finalization.
  */
-class LspSession(val state: LspSessionState, val project: Project) : Disposable {
+class LspSession(val state: LspSessionState, val project: Project) : Disposable, UserDataHolderEx by UserDataHolderBase() {
 
     val createdWhen = Instant.now()!!
 
