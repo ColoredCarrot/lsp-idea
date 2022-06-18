@@ -7,13 +7,11 @@ import info.voidev.lspidea.misc.LspFileType
 import org.eclipse.lsp4j.Position
 import org.eclipse.lsp4j.Range
 import org.eclipse.lsp4j.TextEdit
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-@Ignore // ignore all these tests as they are not supported by CI. TODO Fix that
 class DocumentEditorTest : BasePlatformTestCase() {
 
     override fun getTestDataPath() = "src/test/testdata"
