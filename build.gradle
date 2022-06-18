@@ -20,16 +20,24 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
-kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+//targetCompatibility = 11
+
+tasks.compileTestKotlin {
+    kotlinOptions {
+//        jvmTarget = 11
     }
-    kotlinDaemonJvmArgs = ['--add-opens=java.base/java.lang=ALL-UNNAMED', '--add-opens=java.base/java.io=ALL-UNNAMED']
+}
+
+kotlin {
+//    jvmToolchain {
+//        languageVersion.set(JavaLanguageVersion.of(11))
+//    }
+//    kotlinDaemonJvmArgs = ['--add-opens=java.base/java.lang=ALL-UNNAMED', '--add-opens=java.base/java.io=ALL-UNNAMED']
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {
-        jvmTarget = 17
+        jvmTarget = 11
         freeCompilerArgs += '-Xjvm-default=enable'
     }
 }

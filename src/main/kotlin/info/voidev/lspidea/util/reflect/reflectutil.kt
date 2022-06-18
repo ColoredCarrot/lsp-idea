@@ -11,7 +11,7 @@ val Type.relatedClass: Class<*>?
         // Standard Java types
         is Class<*> -> this
         is ParameterizedType -> rawType.relatedClass
-        is GenericArrayType -> genericComponentType.relatedClass?.arrayType()
+        is GenericArrayType -> genericComponentType.relatedClass?.arrayTypeJava11()
 
         // Jackson types
         is ResolvedType -> erasedType()
@@ -20,3 +20,8 @@ val Type.relatedClass: Class<*>?
         // Unknown
         else -> null
     }
+
+/**
+ * Polyfill for [Class.arrayType] for Java versions before Java 12.
+ */
+fun Class<*>.arrayTypeJava11() = java.lang.reflect.Array.newInstance(this).javaClass
