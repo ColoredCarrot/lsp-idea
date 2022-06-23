@@ -1,15 +1,22 @@
 package info.voidev.lspidea.toolwindow
 
 import com.google.gson.JsonObject
+import com.intellij.codeInsight.hints.presentation.MouseButton
+import com.intellij.codeInsight.hints.presentation.mouseButton
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.rd.createLifetime
+import com.intellij.openapi.ui.popup.Balloon
+import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.openapi.util.Disposer
 import com.intellij.ui.JBSplitter
+import com.intellij.ui.awt.RelativePoint
 import com.intellij.ui.components.JBPanelWithEmptyText
 import com.intellij.ui.components.JBScrollPane
 import com.intellij.ui.components.Label
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.tabs.JBTabsFactory
+import com.jetbrains.rd.swing.mouseClicked
 import info.voidev.lspidea.connect.LspSession
 import info.voidev.lspidea.transientoptions.SessionDebugOptions
 import info.voidev.lspidea.util.IoStreamBridge
@@ -18,6 +25,8 @@ import info.voidev.lspidea.util.bindSelectedDirectly
 import info.voidev.lspidea.util.bindSelectedDirectlyToUserData
 import info.voidev.lspidea.util.enabledWithSession
 import org.apache.commons.io.output.WriterOutputStream
+import java.awt.Toolkit
+import java.awt.datatransfer.StringSelection
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -25,6 +34,7 @@ import java.time.format.DateTimeFormatterBuilder
 import java.time.temporal.ChronoField
 import java.util.concurrent.atomic.AtomicBoolean
 import javax.swing.JComponent
+import javax.swing.JLabel
 import javax.swing.Timer
 
 class LspSessionToolWindow(private val session: LspSession) : Disposable {
@@ -66,8 +76,23 @@ class LspSessionToolWindow(private val session: LspSession) : Disposable {
                         cell(Label(serverInfo.name, bold = true))
                     }
                     row("Version:") {
-                        // TODO make copyable by clicking on it
-                        label(serverInfo.version ?: "unknown")
+                        val serverVersion = serverInfo.version ?: "unknown"
+                        val serverVersionTextComp = label(serverVersion).component
+                        serverVersionTextComp
+                            .mouseClicked()
+                            .advise(session.createLifetime()) { evt ->
+                                if (evt.mouseButton == MouseButton.Left) {
+                                    evt.consume()
+                                    Toolkit.getDefaultToolkit()
+                                        .systemClipboard
+                                        .setContents(StringSelection(serverVersion), null)
+                                    JBPopupFactory.getInstance()
+                                        .createBalloonBuilder(JLabel("Copied!"))
+                                        .setFadeoutTime(2500)
+                                        .createBalloon()
+                                        .show(RelativePoint.getCenterOf(serverVersionTextComp), Balloon.Position.above)
+                                }
+                            }
                     }
                     row("Started:") {
                         val startedLocalTime = LocalTime.ofInstant(session.createdWhen, ZoneId.systemDefault())
