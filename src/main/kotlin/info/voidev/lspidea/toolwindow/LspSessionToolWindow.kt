@@ -87,7 +87,7 @@ class LspSessionToolWindow(private val session: LspSession) : Disposable {
                                         .systemClipboard
                                         .setContents(StringSelection(serverVersion), null)
                                     JBPopupFactory.getInstance()
-                                        .createBalloonBuilder(JLabel("Copied!"))
+                                        .createBalloonBuilder(JLabel("Copied"))
                                         .setFadeoutTime(2500)
                                         .createBalloon()
                                         .show(RelativePoint.getCenterOf(serverVersionTextComp), Balloon.Position.above)
@@ -129,7 +129,7 @@ class LspSessionToolWindow(private val session: LspSession) : Disposable {
     }
 
     private fun createMessageLog(): JComponent {
-        val messageLogUi = JrpcMessageLogView(project, session.state.debugger.gson)
+        val messageLogUi = JrpcMessageLogView(project)
         Disposer.register(this, messageLogUi)
 
         session.state.debugger.messageObserver = messageLogUi

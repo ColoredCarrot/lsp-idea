@@ -1,6 +1,5 @@
 package info.voidev.lspidea.toolwindow
 
-import com.google.gson.Gson
 import com.intellij.execution.filters.TextConsoleBuilderFactory
 import com.intellij.json.JsonFileType
 import com.intellij.openapi.Disposable
@@ -26,7 +25,7 @@ import org.eclipse.lsp4j.jsonrpc.messages.ResponseMessage
 import java.lang.reflect.Type
 import javax.swing.JComponent
 
-class JrpcMessageDetailsViewFactory(private val project: Project, private val gson: Gson) {
+class JrpcMessageDetailsViewFactory(private val project: Project) {
 
     /**
      * Creates a Swing component that acts as a details view for a given message [m].
@@ -211,8 +210,6 @@ class JrpcMessageDetailsViewFactory(private val project: Project, private val gs
                     return console.component
                 }
             }.show()
-
-//        AnalyzeStacktraceUtil.addConsole(project, null, "The Contents", gson.toJson(data))
         }
     }
 }

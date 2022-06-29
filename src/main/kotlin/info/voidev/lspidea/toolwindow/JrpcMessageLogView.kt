@@ -1,6 +1,5 @@
 package info.voidev.lspidea.toolwindow
 
-import com.google.gson.Gson
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
@@ -37,11 +36,11 @@ import javax.swing.SwingUtilities
 /**
  * A Swing UI for displaying a log of JSON-RPC messages.
  */
-class JrpcMessageLogView(private val project: Project, gson: Gson) : JrpcMessageObserver, ComponentContainer {
+class JrpcMessageLogView(private val project: Project) : JrpcMessageObserver, ComponentContainer {
 
     private val mainComponent: JComponent
 
-    private val messageDetailsViewFactory = JrpcMessageDetailsViewFactory(project, gson)
+    private val messageDetailsViewFactory = JrpcMessageDetailsViewFactory(project)
 
     private val myListCellRenderer = MyListCellRenderer()
 
