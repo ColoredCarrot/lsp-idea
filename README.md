@@ -53,3 +53,22 @@ it features multiple tool windows for inspecting
 - JSON-RPC messages, including their contents and stacktraces;
 - the language server's stderr;
 - semantic tokens as decoded by LSP-IDEA, including highlighting selected tokens.
+
+
+## Gallery
+
+#### Diagnostics
+
+![Diagnostics](docs/assets/diagnostics.gif)
+
+---
+
+#### Code Actions
+
+![Code Actions](docs/assets/code_actions.gif)
+
+---
+
+#### Debug Menu
+
+![Debug Menu](docs/assets/debug_message.png)
