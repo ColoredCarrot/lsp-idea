@@ -1,6 +1,6 @@
 package info.voidev.lspidea.debug
 
-import info.voidev.lspidea.wrapperClass
+import info.voidev.lspidea.util.reflect.wrapperClass
 
 class PrimitiveDebugRendererProvider : LspDebugRendererProvider() {
     init {

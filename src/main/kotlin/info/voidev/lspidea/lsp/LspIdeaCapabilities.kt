@@ -1,4 +1,4 @@
-package info.voidev.lspidea.connect
+package info.voidev.lspidea.lsp
 
 import info.voidev.lspidea.features.highlight.LspHighlightingMap
 import org.eclipse.lsp4j.ClientCapabilities
@@ -58,7 +58,7 @@ object LspIdeaCapabilities {
 
     val capabilities by lazy(LazyThreadSafetyMode.PUBLICATION) { createCapabilities() }
 
-    fun createCapabilities() = ClientCapabilities().apply {
+    private fun createCapabilities() = ClientCapabilities().apply {
         general = createGeneral()
         textDocument = createTextDocument()
         window = createWindow()

@@ -6,6 +6,7 @@ import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.project.Project
 import info.voidev.lspidea.LspIdea
+import info.voidev.lspidea.lsp.LspIdeaCapabilities
 import info.voidev.lspidea.lspex.LSPLauncherEx
 import info.voidev.lspidea.util.joinUnwrapExceptionsCancellable
 import info.voidev.lspidea.util.runBackgroundable
@@ -123,7 +124,7 @@ object LspSessionConstructor {
 
         val initParams = createInitParams(state.project)
         initParams.initializationOptions = state.serverDef.initOptions
-        if (state.process is LspLocalServerProcessHandler) {
+        if (state.process is LspLocalProcessRunner) {
             initParams.processId = Math.toIntExact(ProcessHandle.current().pid())
         }
 

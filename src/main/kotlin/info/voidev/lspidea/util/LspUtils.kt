@@ -2,6 +2,7 @@ package info.voidev.lspidea.util
 
 import com.intellij.icons.AllIcons
 import com.intellij.lang.annotation.HighlightSeverity
+import com.intellij.notification.NotificationType
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.SelectionModel
@@ -22,6 +23,7 @@ import org.eclipse.lsp4j.CompletionItemKind
 import org.eclipse.lsp4j.DiagnosticSeverity
 import org.eclipse.lsp4j.InsertReplaceEdit
 import org.eclipse.lsp4j.Location
+import org.eclipse.lsp4j.MessageType
 import org.eclipse.lsp4j.Position
 import org.eclipse.lsp4j.Range
 import org.eclipse.lsp4j.ServerCapabilities
@@ -44,6 +46,8 @@ import java.util.concurrent.Future
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 import javax.swing.Icon
+
+// TODO: This file is a dump... refactor it
 
 object LspUtils {
     fun identify(document: Document) = identify(FileDocumentManager.getInstance().getFile(document)!!)
@@ -312,3 +316,9 @@ inline operator fun <K> Object2IntMap<K>.set(key: K, value: Int) = put(key, valu
 
 @Suppress("NOTHING_TO_INLINE")
 inline operator fun <V> Int2ObjectMap<V>.set(key: Int, value: V?): V? = put(key, value)
+
+fun MessageType.asNotificationType() = when (this) {
+    MessageType.Error -> NotificationType.ERROR
+    MessageType.Warning -> NotificationType.WARNING
+    MessageType.Info, MessageType.Log -> NotificationType.INFORMATION
+}

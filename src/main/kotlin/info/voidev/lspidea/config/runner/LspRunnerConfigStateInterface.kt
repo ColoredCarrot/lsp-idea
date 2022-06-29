@@ -1,4 +1,4 @@
-package info.voidev.lspidea.config.serverhandler
+package info.voidev.lspidea.config.runner
 
 /**
  * A marker interface.

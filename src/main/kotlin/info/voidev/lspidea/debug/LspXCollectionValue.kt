@@ -6,7 +6,7 @@ package info.voidev.lspidea.debug
 // import com.intellij.xdebugger.frame.XValueNode
 // import com.intellij.xdebugger.frame.XValuePlace
 // import com.intellij.xdebugger.frame.presentation.XValuePresentation
-// import info.voidev.lspidea.wrapperClass
+// import info.voidev.lspidea.util.reflect.getWrapperClass
 //
 // class LspXCollectionValue(private val theCollection: Collection<*>) : XValue() {
 //

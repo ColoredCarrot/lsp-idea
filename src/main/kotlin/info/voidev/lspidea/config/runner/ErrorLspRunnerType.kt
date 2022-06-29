@@ -1,4 +1,4 @@
-package info.voidev.lspidea.config.serverhandler
+package info.voidev.lspidea.config.runner
 
 import com.intellij.ui.ColoredText
 import com.intellij.ui.SimpleColoredComponent

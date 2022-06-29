@@ -2,7 +2,7 @@ package info.voidev.lspidea.validation
 
 import com.intellij.openapi.progress.ProcessCanceledException
 import com.intellij.openapi.progress.ProgressIndicator
-import info.voidev.lspidea.connect.LspServerProcessHandler
+import info.voidev.lspidea.connect.LspRunner
 import info.voidev.lspidea.connect.LspSessionConstructor
 import info.voidev.lspidea.connect.LspSessionDestructor
 import info.voidev.lspidea.connect.LspSessionState
@@ -15,7 +15,7 @@ open class LspServerValidatorBase : LspServerValidator {
 
     override fun validate(
         server: ConfiguredLspServer,
-        runner: LspServerProcessHandler,
+        runner: LspRunner,
         progress: ProgressIndicator,
     ): LspServerValidationResult {
 

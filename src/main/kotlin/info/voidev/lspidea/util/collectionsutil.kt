@@ -22,3 +22,8 @@ fun <T> MutableList<T>.reverseConsecutiveSequences(comparator: Comparator<T>) {
         subList(begOfConsec, size).reverse()
     }
 }
+
+inline fun <T> Sequence<T>.sortedBy(crossinline selector: (T) -> UInt) =
+    sortedWith { a, b ->
+        selector(a).compareTo(selector(b))
+    }

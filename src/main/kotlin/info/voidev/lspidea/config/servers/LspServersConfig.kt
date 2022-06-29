@@ -11,8 +11,8 @@ import com.intellij.util.xmlb.annotations.XMap
 import info.voidev.lspidea.LspIdea
 import info.voidev.lspidea.LspSessionManager
 import info.voidev.lspidea.config.InstantiableLspServer
-import info.voidev.lspidea.config.serverhandler.LspRunnerConfigStateInterface
-import info.voidev.lspidea.config.serverhandler.LspRunnerType
+import info.voidev.lspidea.config.runner.LspRunnerConfigStateInterface
+import info.voidev.lspidea.config.runner.LspRunnerType
 import info.voidev.lspidea.def.LspServerSupport
 import java.util.concurrent.atomic.AtomicBoolean
 

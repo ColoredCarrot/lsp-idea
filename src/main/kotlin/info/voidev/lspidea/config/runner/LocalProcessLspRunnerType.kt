@@ -1,4 +1,4 @@
-package info.voidev.lspidea.config.serverhandler
+package info.voidev.lspidea.config.runner
 
 import info.voidev.lspidea.config.Config
 import info.voidev.lspidea.connect.LocalProcessLspRunnerProvider

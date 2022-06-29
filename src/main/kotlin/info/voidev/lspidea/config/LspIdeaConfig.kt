@@ -13,7 +13,6 @@ import com.intellij.openapi.project.Project
 class LspIdeaConfig(project: Project) : PersistentStateComponent<LspIdeaConfig.State> {
 
     data class State(
-        var fooValue: String = "foo",
         var maxSelectionRanges: Int = 25,
     )
 

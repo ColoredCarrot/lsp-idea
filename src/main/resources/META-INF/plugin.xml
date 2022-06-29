@@ -14,7 +14,6 @@
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup displayType="BALLOON" id="Language Server"/>
         <notificationGroup displayType="STICKY_BALLOON" id="Language Server Request"/>
-        <projectService serviceImplementation="info.voidev.lspidea.LspIdeaOptions"/>
         <projectService serviceInterface="info.voidev.lspidea.def.LspServerDispatch"
                         serviceImplementation="info.voidev.lspidea.def.LspServerDispatchImpl"
                         testServiceImplementation="info.voidev.lspidea.def.TestLspServerDispatch"/>
@@ -155,7 +154,7 @@
                         dynamic="false"/>
 
         <extensionPoint name="serverHandlerType"
-                        interface="info.voidev.lspidea.config.serverhandler.LspRunnerType"
+                        interface="info.voidev.lspidea.config.runner.LspRunnerType"
                         dynamic="false"/>
     </extensionPoints>
 
@@ -172,7 +171,7 @@
         <serverSupport implementation="info.voidev.lspidea.plugins.bundled.generic.GenericLspServerSupport"/>
 
         <serverHandlerType
-                implementation="info.voidev.lspidea.config.serverhandler.LocalProcessLspRunnerType"/>
+                implementation="info.voidev.lspidea.config.runner.LocalProcessLspRunnerType"/>
 
 
         <!-- =======================

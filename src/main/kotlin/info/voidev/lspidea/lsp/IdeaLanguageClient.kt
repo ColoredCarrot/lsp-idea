@@ -1,4 +1,4 @@
-package info.voidev.lspidea
+package info.voidev.lspidea.lsp
 
 import com.intellij.codeInsight.daemon.DaemonCodeAnalyzer
 import com.intellij.openapi.actionSystem.AnAction
@@ -14,6 +14,7 @@ import info.voidev.lspidea.editor.applyWorkspaceEdit
 import info.voidev.lspidea.misc.LspAction
 import info.voidev.lspidea.misc.LspNotification
 import info.voidev.lspidea.util.LspUtils
+import info.voidev.lspidea.util.asNotificationType
 import org.eclipse.lsp4j.ApplyWorkspaceEditParams
 import org.eclipse.lsp4j.ApplyWorkspaceEditResponse
 import org.eclipse.lsp4j.LogTraceParams

@@ -3,7 +3,7 @@ package info.voidev.lspidea.config.servers
 import com.intellij.util.xmlb.annotations.Attribute
 import com.intellij.util.xmlb.annotations.Property
 import com.intellij.util.xmlb.annotations.Tag
-import info.voidev.lspidea.config.serverhandler.LspRunnerConfigState
+import info.voidev.lspidea.config.runner.LspRunnerConfigState
 import info.voidev.lspidea.util.xml.UUIDConverter
 import java.util.UUID
 

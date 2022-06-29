@@ -7,7 +7,7 @@ import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import com.intellij.util.ui.UIUtil
 import info.voidev.lspidea.config.Config
-import info.voidev.lspidea.config.serverhandler.LspRunnerConfig
+import info.voidev.lspidea.config.runner.LspRunnerConfig
 import info.voidev.lspidea.def.LspServerSupport
 import java.util.UUID
 import javax.swing.JComponent

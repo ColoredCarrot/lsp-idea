@@ -1,4 +1,4 @@
-package info.voidev.lspidea.config.serverhandler
+package info.voidev.lspidea.config.runner
 
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.util.xmlb.Converter

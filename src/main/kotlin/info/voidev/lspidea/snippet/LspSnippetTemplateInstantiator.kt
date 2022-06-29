@@ -3,7 +3,7 @@ package info.voidev.lspidea.snippet
 import com.intellij.codeInsight.template.impl.TemplateImpl
 import com.intellij.codeInsight.template.impl.TextExpression
 import com.intellij.codeInsight.template.impl.Variable
-import info.voidev.lspidea.sortedBy
+import info.voidev.lspidea.util.sortedBy
 
 object LspSnippetTemplateInstantiator {
 

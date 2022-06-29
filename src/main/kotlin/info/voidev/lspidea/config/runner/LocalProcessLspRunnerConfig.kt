@@ -1,4 +1,4 @@
-package info.voidev.lspidea.config.serverhandler
+package info.voidev.lspidea.config.runner
 
 import com.intellij.collaboration.async.CompletableFutureUtil
 import com.intellij.openapi.application.invokeLater
@@ -13,7 +13,7 @@ import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import info.voidev.lspidea.config.Config
 import info.voidev.lspidea.config.servers.LspServerOptionsConfigStateInterface
-import info.voidev.lspidea.connect.LspLocalServerProcessHandler
+import info.voidev.lspidea.connect.LspLocalProcessRunner
 import info.voidev.lspidea.def.ConfiguredLspServer
 import info.voidev.lspidea.def.LspServerSupport
 import info.voidev.lspidea.util.getValue
@@ -131,7 +131,7 @@ class LocalProcessLspRunnerConfig(private val origin: LspServerSupport<*>) : Con
     private fun doTestExecutable(server: ConfiguredLspServer, progress: ProgressIndicator) {
         val tempDir = FileUtil.createTempDirectory("langserver-test-dir.", null)
 
-        val processHandler = LspLocalServerProcessHandler(
+        val processHandler = LspLocalProcessRunner(
             ProcessBuilder(File(executablePathValue).absolutePath).directory(tempDir)
         )
 

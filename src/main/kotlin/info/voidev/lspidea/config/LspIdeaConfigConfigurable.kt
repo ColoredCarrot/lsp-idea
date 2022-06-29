@@ -18,8 +18,7 @@ class LspIdeaConfigConfigurable(private val project: Project) : Configurable {
         val comp = component!!
         val config = LspIdeaConfig.getInstance(project).state
         return try {
-            comp.foo != config.fooValue ||
-                comp.maxSelectionRanges != config.maxSelectionRanges
+            comp.maxSelectionRanges != config.maxSelectionRanges
         } catch (_: ConfigurationException) {
             true
         }
@@ -28,14 +27,12 @@ class LspIdeaConfigConfigurable(private val project: Project) : Configurable {
     override fun apply() {
         val comp = component!!
         val config = LspIdeaConfig.getInstance(project).state
-        config.fooValue = comp.foo
         config.maxSelectionRanges = comp.maxSelectionRanges
     }
 
     override fun reset() {
         val comp = component!!
         val config = LspIdeaConfig.getInstance(project).state
-        comp.foo = config.fooValue
         comp.maxSelectionRanges = config.maxSelectionRanges
     }
 

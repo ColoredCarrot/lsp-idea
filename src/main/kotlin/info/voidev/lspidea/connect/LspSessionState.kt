@@ -1,8 +1,8 @@
 package info.voidev.lspidea.connect
 
 import com.intellij.openapi.project.Project
-import info.voidev.lspidea.IdeaLanguageClient
 import info.voidev.lspidea.def.ConfiguredLspServer
+import info.voidev.lspidea.lsp.IdeaLanguageClient
 import info.voidev.lspidea.lspex.LanguageServerEx
 import info.voidev.lspidea.lspex.debug.JrpcDebugger
 import org.eclipse.lsp4j.ServerCapabilities
@@ -16,7 +16,7 @@ class LspSessionState internal constructor(
      */
     val project: Project?,
     val serverDef: ConfiguredLspServer,
-    val process: LspServerProcessHandler,
+    val process: LspRunner,
 ) {
 
     var status = LspStatus.NOT_STARTED

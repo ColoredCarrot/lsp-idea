@@ -3,7 +3,7 @@ package info.voidev.lspidea.connect
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.TimeUnit
 
-interface LspServerProcessHandler {
+interface LspRunner {
 
     fun start(): LspConnection
 

@@ -3,7 +3,7 @@ package info.voidev.lspidea.connect
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 
-class LspLocalServerProcessHandler(private val builder: ProcessBuilder) : LspServerProcessHandler {
+class LspLocalProcessRunner(private val builder: ProcessBuilder) : LspRunner {
 
     private var process: Process? = null
     private var exitCode: Int? = null
